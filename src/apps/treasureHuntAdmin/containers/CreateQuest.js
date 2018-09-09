@@ -20,16 +20,8 @@ class CreateQuest extends React.Component {
     this.props.getQuestions()
   }
 
-  onSubmit = ({ name, ...questions }) => {
-    const quest = {
-      name,
-      questions: Object.keys(questions)
-        .filter(question => questions[question] === true)
-        .map(question => {
-          return parseInt(question.substring(8))
-        })
-    }
-    if (quest.questions.length === 0) {
+  onSubmit = quest => {
+    if (!quest.questions || quest.questions.length === 0) {
       console.log('No question selected!')
       return null
     }

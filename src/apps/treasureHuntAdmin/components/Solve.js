@@ -2,6 +2,7 @@ import React from 'react'
 import { Field } from 'redux-form'
 import { Link } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
+import { FormControl, FormControlLabel, Radio } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
@@ -24,39 +25,63 @@ const styles = theme => ({
   }
 })
 
-const Solve = ({ classes, active, handleSubmit, onSubmit }) => (
-  <Paper className={classes.paper}>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Typography variant='title'>{active.name}</Typography>
-      <Typography variant='subheading'>
-        {active.question.text}
-      </Typography>
-      <Field
-        name='answer'
-        component={WrappedRadioGroup}
-        answers={active.question.answers}
-      />
-      <div className={classes.actions}>
-        <Button
-          variant='contained'
-          color='secondary'
-          component={Link}
-          to={'/treasurehuntadmin/dashboard'}
-        >
-          Anulare
-        </Button>
-        <Button
-          type='submit'
-          variant='contained'
-          color='primary'
-          // disabled={noQuestions}
-          className={classes.button}
-        >
-          Răspunde
-        </Button>
-      </div>
-    </form>
-  </Paper>
-)
+const Solve = ({ classes, active, handleSubmit, onSubmit }) => {
+  console.log(active)
+  const { answers, text: questionText } = active.question
+  return (
+    <Paper className={classes.paper}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Typography variant='subheading'>
+          Rezolvi quest-ul: {active.name}
+        </Typography>
+        <Typography variant='title'>
+          {questionText}
+        </Typography>
+        <FormControl component='fieldset' className={classes.formControl}>
+          <Field name='answer' component={WrappedRadioGroup}>
+            <FormControlLabel
+              value={answers[0]}
+              control={<Radio />}
+              label={answers[0]}
+            />
+            <FormControlLabel
+              value={answers[1]}
+              control={<Radio />}
+              label={answers[1]}
+            />
+            <FormControlLabel
+              value={answers[2]}
+              control={<Radio />}
+              label={answers[2]}
+            />
+            <FormControlLabel
+              value={answers[3]}
+              control={<Radio />}
+              label={answers[3]}
+            />
+          </Field>
+        </FormControl>
+        <div className={classes.actions}>
+          <Button
+            variant='contained'
+            color='secondary'
+            component={Link}
+            to={'/treasurehuntadmin/dashboard'}
+          >
+            Anulare
+          </Button>
+          <Button
+            type='submit'
+            variant='contained'
+            color='primary'
+            className={classes.button}
+          >
+            Răspunde
+          </Button>
+        </div>
+      </form>
+    </Paper>
+  )
+}
 
 export default withStyles(styles)(Solve)

@@ -6,10 +6,10 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemSecondaryAction,
-  ListItemIcon
+  ListItemAvatar,
+  Avatar
 } from '@material-ui/core'
-import SendIcon from '@material-ui/icons/Send'
+import AssignmentIcon from '@material-ui/icons/Assignment'
 
 import { withStyles } from '@material-ui/core'
 
@@ -30,12 +30,12 @@ const styles = theme => ({
 
 const renderQuest = quest => (
   <ListItem key={quest.id} button component={Link} to={`solve/${quest.id}`}>
+    <ListItemAvatar>
+      <Avatar>
+        <AssignmentIcon />
+      </Avatar>
+    </ListItemAvatar>
     <ListItemText primary={quest.name} />
-    <ListItemSecondaryAction>
-      <ListItemIcon>
-        <SendIcon />
-      </ListItemIcon>
-    </ListItemSecondaryAction>
   </ListItem>
 )
 

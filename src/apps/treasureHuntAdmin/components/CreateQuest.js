@@ -1,21 +1,26 @@
 import React from 'react'
-import { Field } from 'redux-form'
 import { Link } from 'react-router-dom'
 import {
   Button,
   List,
   Typography,
-  Paper
+  Paper,
+  ListItem,
+  ListItemText
 } from '@material-ui/core'
+
+import { Field, FieldArray } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
 import WrappedTextField from 'shared/reduxForm/components/TextField'
+import WrappedCheckbox from './WrappedCheckbox'
 import { required } from 'utils/validators'
+
 import { withStyles } from '@material-ui/core'
-import WrappedListItem from './WrappedListItem'
 
 const styles = theme => ({
   paper: {
     width: 800,
+    height: 600,
     padding: '48px 40px 36px'
   },
   actions: {
@@ -37,15 +42,64 @@ class CreateQuiz extends React.Component {
     this.setState({ query: event.target.value.toLowerCase() })
   }
 
-  renderField (question) {
+  renderField = (question, fields) => {
+    const { id, text, answers } = question
     return (
-      <Field
-        key={question.id}
-        name={`question${question.id}`}
-        component={WrappedListItem}
-        question={question}
-        type='checkbox'
-      />
+      <ListItem
+        key={id}
+        button
+        onClick={() => {
+          console.log(fields.getAll())
+          if (!fields.getAll() || !fields.getAll().some(e => e.id === id)) {
+            fields.push({ id, text })
+          }
+        }}
+      >
+        <ListItemText
+          primary={text}
+          secondary={`corect: ${answers.valid}; greșit: ${answers.invalid}`}
+        />
+      </ListItem>
+    )
+  }
+
+  renderSelected = (question, fields, index) => {
+    const { id, text } = fields.get(index)
+    return (
+      <ListItem key={id} button onClick={() => fields.remove(index)}>
+        <ListItemText primary={`${index + 1}. ${text}`} />
+      </ListItem>
+    )
+  }
+
+  renderFieldArray = ({ fields, meta: { touched, error } }) => {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={{ flexBasis: '66.66%' }}>
+          <List style={{ maxHeight: 370, overflow: 'auto' }}>
+            {this.state.query
+              ? this.props.questions
+                  .filter(q => q.text.toLowerCase().includes(this.state.query))
+                  .map(question => this.renderField(question, fields))
+              : this.props.questions.map(question =>
+                  this.renderField(question, fields)
+                )}
+          </List>
+        </div>
+        <div style={{ flexBasis: '33.33%' }}>
+          <Typography
+            variant='subheading'
+            style={{ paddingTop: '18px', textAlign: 'center' }}
+          >
+            Întrebări selectate (afișate jucătorului în această ordine):
+          </Typography>
+          <List dense style={{ maxHeight: 310, overflow: 'auto' }}>
+            {fields.map((question, index) =>
+              this.renderSelected(question, fields, index)
+            )}
+          </List>
+        </div>
+      </div>
     )
   }
 
@@ -68,7 +122,6 @@ class CreateQuiz extends React.Component {
               display: 'flex'
             }}
           />
-
           <TextField
             id='filterQuestions'
             label='Filtrează întrebările'
@@ -77,32 +130,11 @@ class CreateQuiz extends React.Component {
             onChange={event => this.handleQuery(event)}
             style={{ display: 'flex' }}
           />
+          <FieldArray
+            name='questions'
+            component={this.renderFieldArray.bind(this)}
+          />
 
-          <List>
-            {this.state.query
-              ? this.props.questions
-                  .filter(q => q.text.toLowerCase().includes(this.state.query))
-                  .map(question => this.renderField(question))
-              : this.props.questions.map(question =>
-                  this.renderField(question)
-                )}
-          </List>
-
-          {/* <Button
-          variant='contained'
-          color='primary'
-          component={Link}
-          to={`/question/new`}
-        >
-          Add Question
-        </Button> */}
-          {/* <Button
-          variant='contained'
-          color='secondary'
-          onClick={this.props.untickAll}
-        >
-          Uncheck all
-        </Button> */}
           <div className={classes.actions}>
             <Button
               variant='contained'

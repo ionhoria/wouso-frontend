@@ -8,6 +8,7 @@ import { selectApps } from 'core/app/reducers/orchestrationReducer'
 import CreateQuest from './CreateQuest'
 import AddQuestion from './AddQuestion'
 import Dashboard from './Dashboard'
+import Gradebook from './Gradebook'
 import Solve from './Solve'
 
 class Routes extends React.Component {
@@ -26,6 +27,7 @@ class Routes extends React.Component {
       { path: 'quest', component: CreateQuest },
       { path: 'question', component: AddQuestion },
       { path: 'dashboard', component: Dashboard },
+      { path: 'gradebook', component: Gradebook },
       { path: 'solve/:id', component: Solve }
     ])
   }

@@ -4,7 +4,8 @@ import {
   SET_QUESTIONS,
   SET_QUEST,
   SET_QUESTS,
-  SET_ACTIVE
+  SET_ACTIVE,
+  SET_GRADEBOOK
 } from './types'
 
 export const postQuestion = question => dispatch => {
@@ -149,4 +150,28 @@ export const answerQuestion = (sessionId, answer) => dispatch => {
       })
     )
   )
+}
+
+export const getGradebook = () => dispatch =>
+  new Promise((resolve, reject) =>
+    dispatch(
+      apiRequest({
+        method: 'GET',
+        path: `apps/wouso-treasure-hunt/active/gradebook`,
+        success: payload => dispatch => {
+          dispatch(setGradebook(payload))
+          resolve(payload)
+        },
+        failure: err => () => {
+          reject(err)
+        }
+      })
+    )
+  )
+
+const setGradebook = gradebook => {
+  return {
+    type: SET_GRADEBOOK,
+    payload: gradebook
+  }
 }
