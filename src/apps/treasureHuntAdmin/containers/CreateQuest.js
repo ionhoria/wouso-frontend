@@ -14,20 +14,14 @@ const CreateQuestForm = reduxForm({ form: 'treasureHuntAdmin/CreateQuest' })(
 )
 
 class CreateQuest extends React.Component {
-  state = { noQuestions: true }
-
   componentDidMount () {
     this.props.getQuestions()
   }
 
   onSubmit = quest => {
-    if (!quest.questions || quest.questions.length === 0) {
-      console.log('No question selected!')
-      return null
-    }
     this.props
       .postQuest(quest)
-      .then(this.props.history.push('dashboard'))
+      .then(() => this.props.history.push('dashboard'))
       .catch(console.err)
   }
 

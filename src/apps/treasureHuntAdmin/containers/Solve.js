@@ -29,8 +29,19 @@ class Solve extends React.Component {
   }
 
   render () {
-    if (this.props.active.id !== this.props.match.params.id) return null
-    return <SolveForm onSubmit={this.onSubmit} active={this.props.active} />
+    if (
+      !this.props.active ||
+      this.props.active.id !== this.props.match.params.id
+    ) {
+      return null
+    }
+    return (
+      <SolveForm
+        onSubmit={this.onSubmit}
+        active={this.props.active}
+        redirect={() => this.props.history.push('/treasurehuntadmin/dashboard')}
+      />
+    )
   }
 }
 

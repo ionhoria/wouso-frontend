@@ -12,7 +12,6 @@ import {
 import { Field, FieldArray } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
 import WrappedTextField from 'shared/reduxForm/components/TextField'
-import WrappedCheckbox from './WrappedCheckbox'
 import { required } from 'utils/validators'
 
 import { withStyles } from '@material-ui/core'
@@ -49,7 +48,6 @@ class CreateQuiz extends React.Component {
         key={id}
         button
         onClick={() => {
-          console.log(fields.getAll())
           if (!fields.getAll() || !fields.getAll().some(e => e.id === id)) {
             fields.push({ id, text })
           }
@@ -72,8 +70,8 @@ class CreateQuiz extends React.Component {
     )
   }
 
-  renderFieldArray = ({ fields, meta: { touched, error } }) => {
-    return (
+  renderFieldArray = ({ fields }) => (
+    <React.Fragment>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <div style={{ flexBasis: '66.66%' }}>
           <List style={{ maxHeight: 370, overflow: 'auto' }}>
@@ -89,22 +87,54 @@ class CreateQuiz extends React.Component {
         <div style={{ flexBasis: '33.33%' }}>
           <Typography
             variant='subheading'
-            style={{ paddingTop: '18px', textAlign: 'center' }}
+            style={{ textAlign: 'center' }}
+            color='primary'
           >
+            {fields.length} / 10
+          </Typography>
+          <Typography variant='subheading' style={{ textAlign: 'center' }}>
             Întrebări selectate (afișate jucătorului în această ordine):
           </Typography>
-          <List dense style={{ maxHeight: 310, overflow: 'auto' }}>
+          <List dense style={{ maxHeight: 306, overflow: 'auto' }}>
             {fields.map((question, index) =>
               this.renderSelected(question, fields, index)
             )}
           </List>
+
         </div>
       </div>
-    )
+      <div className={this.props.classes.actions}>
+        <Button
+          variant='contained'
+          color='secondary'
+          component={Link}
+          to={'/treasurehuntadmin/dashboard'}
+        >
+          Anulare
+        </Button>
+        <Button
+          type='submit'
+          variant='contained'
+          color='primary'
+          disabled={fields.length !== 10}
+          className={this.props.classes.button}
+        >
+          {fields.length === 10 ? 'Creează quest' : 'Alege 10 întrebări'}
+        </Button>
+      </div>
+    </React.Fragment>
+  )
+
+  validateFieldArray = (value, allValues, props) => {
+    const errors = {}
+    if (!value || value.length !== 10) {
+      errors.questions = 'Un quest trebuie sa aibă fix 10 întrebări!'
+    }
+    return errors
   }
 
   render () {
-    const { classes, handleSubmit, onSubmit, noQuestions } = this.props
+    const { classes, handleSubmit, onSubmit } = this.props
     return (
       <Paper className={classes.paper}>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -133,27 +163,8 @@ class CreateQuiz extends React.Component {
           <FieldArray
             name='questions'
             component={this.renderFieldArray.bind(this)}
+            validate={this.validateFieldArray}
           />
-
-          <div className={classes.actions}>
-            <Button
-              variant='contained'
-              color='secondary'
-              component={Link}
-              to={'/treasurehuntadmin/dashboard'}
-            >
-              Anulare
-            </Button>
-            <Button
-              type='submit'
-              variant='contained'
-              color='primary'
-              disabled={noQuestions}
-              className={classes.button}
-            >
-              Creează quest
-            </Button>
-          </div>
         </form>
       </Paper>
     )

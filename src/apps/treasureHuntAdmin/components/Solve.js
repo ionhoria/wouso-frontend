@@ -5,8 +5,8 @@ import Paper from '@material-ui/core/Paper'
 import { FormControl, FormControlLabel, Radio } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-
 import WrappedRadioGroup from './WrappedRadioGroup'
+import Countdown from 'react-countdown-now'
 
 import { withStyles } from '@material-ui/core'
 
@@ -25,8 +25,18 @@ const styles = theme => ({
   }
 })
 
-const Solve = ({ classes, active, handleSubmit, onSubmit }) => {
-  console.log(active)
+const required = value => (!value ? 'Trebuie să alegi un răspuns' : undefined)
+
+const renderer = ({ minutes, seconds }) => (
+  <Typography
+    variant='title'
+    style={{ paddingRight: '10px', paddingTop: '6px' }}
+  >
+    {minutes}m:{seconds}s
+  </Typography>
+)
+
+const Solve = ({ classes, active, handleSubmit, onSubmit, redirect }) => {
   const { answers, text: questionText } = active.question
   return (
     <Paper className={classes.paper}>
@@ -38,7 +48,11 @@ const Solve = ({ classes, active, handleSubmit, onSubmit }) => {
           {questionText}
         </Typography>
         <FormControl component='fieldset' className={classes.formControl}>
-          <Field name='answer' component={WrappedRadioGroup}>
+          <Field
+            name='answer'
+            component={WrappedRadioGroup}
+            validate={required}
+          >
             <FormControlLabel
               value={answers[0]}
               control={<Radio />}
@@ -61,7 +75,13 @@ const Solve = ({ classes, active, handleSubmit, onSubmit }) => {
             />
           </Field>
         </FormControl>
+
         <div className={classes.actions}>
+          <Countdown
+            date={new Date(active.createdAt).getTime() + 100 * 1000}
+            onComplete={redirect}
+            renderer={renderer}
+          />
           <Button
             variant='contained'
             color='secondary'

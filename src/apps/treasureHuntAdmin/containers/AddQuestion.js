@@ -20,7 +20,7 @@ class AddQuestion extends React.Component {
         text,
         answers: { valid, invalid: [invalidOne, invalidTwo, invalidThree] }
       })
-      .then(() => this.props.history.push('treasurehuntadmin/dashboard'))
+      .then(() => this.props.history.push('/treasurehuntadmin/quest'))
       .catch(console.err)
   }
 
