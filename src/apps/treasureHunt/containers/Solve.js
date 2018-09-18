@@ -9,7 +9,7 @@ import { getActive, answerQuestion } from '../actions'
 import SolveComponent from '../components/Solve'
 
 import { reduxForm } from 'redux-form'
-const SolveForm = reduxForm({ form: 'treasureHuntAdmin/Solve' })(SolveComponent)
+const SolveForm = reduxForm({ form: 'treasureHunt/Solve' })(SolveComponent)
 
 class Solve extends React.Component {
   componentDidMount () {
@@ -19,7 +19,7 @@ class Solve extends React.Component {
   fetchActive = () => {
     this.props
       .getActive(this.props.match.params.id)
-      .catch(() => this.props.history.push('/treasurehuntadmin/dashboard'))
+      .catch(() => this.props.history.push('/treasurehunt/dashboard'))
   }
 
   onSubmit = ({ answer }) => {
@@ -39,7 +39,7 @@ class Solve extends React.Component {
       <SolveForm
         onSubmit={this.onSubmit}
         active={this.props.active}
-        redirect={() => this.props.history.push('/treasurehuntadmin/dashboard')}
+        redirect={() => this.props.history.push('/treasurehunt/dashboard')}
       />
     )
   }

@@ -32,7 +32,7 @@ const styles = theme => ({
   }
 })
 
-class CreateQuiz extends React.Component {
+class CreateQuest extends React.Component {
   state = {
     query: ''
   }
@@ -126,11 +126,9 @@ class CreateQuiz extends React.Component {
   )
 
   validateFieldArray = (value, allValues, props) => {
-    const errors = {}
-    if (!value || value.length !== 10) {
-      errors.questions = 'Un quest trebuie sa aibă fix 10 întrebări!'
-    }
-    return errors
+    return !value || value.length !== 10
+      ? 'Un quest trebuie sa aibă fix 10 întrebări!'
+      : undefined
   }
 
   render () {
@@ -171,4 +169,4 @@ class CreateQuiz extends React.Component {
   }
 }
 
-export default withStyles(styles)(CreateQuiz)
+export default withStyles(styles)(CreateQuest)

@@ -1,10 +1,13 @@
 const getAppManifest = appName => require(`./${appName}/manifest`).default
 
 const manifests = [
-  getAppManifest('statistics'),
+  getAppManifest('treasureHunt'),
+  getAppManifest('treasureHuntAdmin'),
   getAppManifest('quiz'),
   getAppManifest('quizAdmin'),
-  getAppManifest('treasureHuntAdmin')
+  getAppManifest('qotd'),
+  getAppManifest('qotdAdmin'),
+  getAppManifest('statistics')
 ]
 
 export default manifests

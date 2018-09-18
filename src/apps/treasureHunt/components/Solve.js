@@ -86,7 +86,7 @@ const Solve = ({ classes, active, handleSubmit, onSubmit, redirect }) => {
             variant='contained'
             color='secondary'
             component={Link}
-            to={'/treasurehuntadmin/dashboard'}
+            to={'/treasurehunt/dashboard'}
           >
             Anulare
           </Button>

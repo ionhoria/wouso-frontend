@@ -1,10 +1,10 @@
-import { SET_QUESTIONS, SET_QUESTION } from '../actions/types'
+import { SET_QUESTS, SET_QUEST } from '../actions/types'
 
 const questionsReducer = (state = [], action) => {
   switch (action.type) {
-    case SET_QUESTIONS:
+    case SET_QUESTS:
       return action.payload
-    case SET_QUESTION:
+    case SET_QUEST:
       return state.concat(action.payload)
     default:
       return state

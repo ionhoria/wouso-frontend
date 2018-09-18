@@ -1,0 +1,6 @@
+export const SET_QUESTION = 'treasureHuntAdmin/SET_QUESTION'
+export const SET_QUESTIONS = 'treasureHuntAdmin/SET_QUESTIONS'
+export const SET_QUEST = 'treasureHuntAdmin/SET_QUEST'
+export const SET_QUESTS = 'treasureHuntAdmin/SET_QUESTS'
+export const SET_ACTIVE = 'treasureHuntAdmin/SET_ACTIVE'
+export const SET_GRADEBOOK = 'treasureHuntAdmin/SET_GRADEBOOK'

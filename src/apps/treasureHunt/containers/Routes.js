@@ -5,9 +5,8 @@ import { createSelector } from 'reselect'
 import { selectOrchestration } from 'core/app/reducers'
 import { selectApps } from 'core/app/reducers/orchestrationReducer'
 
-import CreateQuest from './CreateQuest'
-import AddQuestion from './AddQuestion'
-import Gradebook from './Gradebook'
+import Dashboard from './Dashboard'
+import Solve from './Solve'
 
 class Routes extends React.Component {
   render () {
@@ -16,15 +15,14 @@ class Routes extends React.Component {
         path: '',
         component: () => (
           <div>
-            Treasure Hunt Admin Home
+            Treasure Hunt Home
             <br />
             Folosește meniul din partea stângă pentru navigare.
           </div>
         )
       },
-      { path: 'quest', component: CreateQuest },
-      { path: 'question', component: AddQuestion },
-      { path: 'gradebook', component: Gradebook }
+      { path: 'dashboard', component: Dashboard },
+      { path: 'solve/:id', component: Solve }
     ])
   }
 }

@@ -11,11 +11,7 @@ class Navigation extends React.Component {
   }
 
   render () {
-    return this.props.render([
-      { title: 'Add Question', path: 'question' },
-      { title: 'Create Quiz', path: 'create' },
-      { title: 'Grade Quiz', path: 'grade' }
-    ])
+    return this.props.render([{ title: 'Dashboard', path: 'dashboard' }])
   }
 }
 

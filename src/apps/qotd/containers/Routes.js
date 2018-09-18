@@ -4,17 +4,14 @@ import { createSelector } from 'reselect'
 
 import { selectOrchestration } from 'core/app/reducers'
 import { selectApps } from 'core/app/reducers/orchestrationReducer'
+import JoinQuiz from './JoinQuiz'
+import SolveQuiz from './SolveQuiz'
+import ThankYou from '../components/ThankYou'
 
-class Navigation extends React.Component {
-  getNavigation () {
-    return this.props.apps.map(app => ({ title: app, path: app }))
-  }
-
+class Routes extends React.Component {
   render () {
     return this.props.render([
-      { title: 'Add Question', path: 'question' },
-      { title: 'Create Quiz', path: 'create' },
-      { title: 'Grade Quiz', path: 'grade' }
+      { path: 'answer', component: () => <div>Under construction</div> }
     ])
   }
 }
@@ -23,4 +20,4 @@ const selector = createSelector(selectOrchestration, selectApps, apps => ({
   apps
 }))
 
-export default connect(selector)(Navigation)
+export default connect(selector)(Routes)

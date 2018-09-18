@@ -1,4 +1,4 @@
-import { SET_QUESTIONS, SET_QUESTION } from '../actions/types'
+import { SET_QUESTION, SET_QUESTIONS } from '../actions/types'
 
 const questionsReducer = (state = [], action) => {
   switch (action.type) {
