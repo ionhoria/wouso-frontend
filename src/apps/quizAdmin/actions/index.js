@@ -7,12 +7,14 @@ import {
   SET_QUESTION
 } from './types'
 
+const ROOT_URL = 'apps/wouso-quiz'
+
 export const getQuizes = () => dispatch =>
   new Promise((resolve, reject) =>
     dispatch(
       apiRequest({
         method: 'GET',
-        path: 'apps/wouso-test-app/sessions',
+        path: `${ROOT_URL}/sessions`,
         success: payload => dispatch => {
           dispatch(setQuizes(payload))
           resolve(payload)
@@ -36,7 +38,7 @@ export const getQuiz = secret => dispatch =>
     dispatch(
       apiRequest({
         method: 'GET',
-        path: `apps/wouso-test-app/sessions/${secret}`,
+        path: `${ROOT_URL}/sessions/${secret}`,
         success: payload => dispatch => {
           dispatch(setQuiz(payload))
           resolve(payload)
@@ -60,7 +62,7 @@ export const postQuiz = quiz => dispatch => {
     dispatch(
       apiRequest({
         method: 'POST',
-        path: 'apps/wouso-test-app/sessions',
+        path: `${ROOT_URL}/sessions`,
         data: quiz,
         success: payload => () => {
           resolve(payload)
@@ -85,7 +87,7 @@ export const postGrades = answers => dispatch => {
     dispatch(
       apiRequest({
         method: 'PUT',
-        path: `apps/wouso-test-app/answers/grade`,
+        path: `${ROOT_URL}/answers/grade`,
         data: answers,
         success: payload => () => {
           resolve(payload)
@@ -103,7 +105,7 @@ export const getQuestions = () => dispatch =>
     dispatch(
       apiRequest({
         method: 'GET',
-        path: 'apps/wouso-test-app/questions',
+        path: `${ROOT_URL}/questions`,
         success: payload => dispatch => {
           dispatch(setQuestions(payload))
           resolve(payload)
@@ -127,7 +129,7 @@ export const postQuestion = question => dispatch => {
     dispatch(
       apiRequest({
         method: 'POST',
-        path: 'apps/wouso-test-app/questions',
+        path: `${ROOT_URL}/questions`,
         data: question,
         success: payload => () => {
           dispatch(setQuestion(payload))

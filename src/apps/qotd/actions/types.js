@@ -1,1 +1,2 @@
-export const SET_QUIZ = 'quiz/SET_QUIZ'
+export const SET_QOTD = 'qotd/SET_QOTD'
+export const CLEAR_QOTD = 'qotd/CLEAR_QOTD'

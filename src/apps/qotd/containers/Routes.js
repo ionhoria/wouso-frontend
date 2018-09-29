@@ -4,15 +4,12 @@ import { createSelector } from 'reselect'
 
 import { selectOrchestration } from 'core/app/reducers'
 import { selectApps } from 'core/app/reducers/orchestrationReducer'
-import JoinQuiz from './JoinQuiz'
-import SolveQuiz from './SolveQuiz'
-import ThankYou from '../components/ThankYou'
+
+import Answer from './Answer'
 
 class Routes extends React.Component {
   render () {
-    return this.props.render([
-      { path: 'answer', component: () => <div>Under construction</div> }
-    ])
+    return this.props.render([{ path: 'answer', component: Answer }])
   }
 }
 

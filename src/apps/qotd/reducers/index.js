@@ -1,12 +1,11 @@
-import _ from 'lodash'
-import { SET_QUIZ } from '../actions/types'
+import { SET_QOTD, CLEAR_QOTD } from '../actions/types'
 
 const rootReducer = (state = {}, action) => {
   switch (action.type) {
-    case SET_QUIZ:
-      return Object.assign({}, action.payload, {
-        answers: _.mapKeys(action.payload.answers, 'questionId')
-      })
+    case SET_QOTD:
+      return action.payload
+    case CLEAR_QOTD:
+      return {}
     default:
       return state
   }

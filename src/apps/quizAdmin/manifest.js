@@ -5,7 +5,7 @@ import rootReducer from './reducers'
 export default {
   title: 'Quiz Admin',
   baseUrl: 'quizadmin',
-  requiredBackendApps: ['wouso-test-app'],
+  requiredBackendApps: ['wouso-quiz'],
   routes: Routes,
   navigation: Navigation,
   reducer: rootReducer

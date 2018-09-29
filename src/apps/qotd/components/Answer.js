@@ -6,7 +6,6 @@ import { FormControl, FormControlLabel, Radio } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import WrappedRadioGroup from './WrappedRadioGroup'
-import Countdown from 'react-countdown-now'
 
 import { withStyles } from '@material-ui/core'
 
@@ -27,23 +26,11 @@ const styles = theme => ({
 
 const required = value => (!value ? 'Trebuie să alegi un răspuns' : undefined)
 
-const renderer = ({ minutes, seconds }) => (
-  <Typography
-    variant='title'
-    style={{ paddingRight: '10px', paddingTop: '6px' }}
-  >
-    {minutes}m:{seconds}s
-  </Typography>
-)
-
-const Solve = ({ classes, active, handleSubmit, onSubmit, redirect }) => {
-  const { answers, text: questionText } = active.question
+const Answer = ({ classes, qotd, handleSubmit, onSubmit }) => {
+  const { answers, text: questionText } = qotd
   return (
     <Paper className={classes.paper}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Typography variant='subheading'>
-          Rezolvi quest-ul: {active.name}
-        </Typography>
         <Typography variant='title'>
           {questionText}
         </Typography>
@@ -77,16 +64,11 @@ const Solve = ({ classes, active, handleSubmit, onSubmit, redirect }) => {
         </FormControl>
 
         <div className={classes.actions}>
-          {/* <Countdown
-            date={new Date(active.createdAt).getTime() + 100 * 1000}
-            onComplete={redirect}
-            renderer={renderer}
-          /> */}
           <Button
             variant='contained'
             color='secondary'
             component={Link}
-            to={'/treasurehunt/dashboard'}
+            to={'/qotd'}
           >
             Anulare
           </Button>
@@ -104,4 +86,4 @@ const Solve = ({ classes, active, handleSubmit, onSubmit, redirect }) => {
   )
 }
 
-export default withStyles(styles)(Solve)
+export default withStyles(styles)(Answer)

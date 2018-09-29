@@ -28,6 +28,7 @@ const AddQuestion = ({ classes, handleSubmit, onSubmit }) => {
     <Paper className={classes.paper}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Typography variant='title'>Adaugă o întrebare nouă</Typography>
+        <Typography variant='subheading'>cu răspuns grilă</Typography>
         <Field
           component={WrappedTextField}
           name='text'

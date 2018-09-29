@@ -9,15 +9,18 @@ import { postQuestion } from '../actions'
 
 import { reduxForm } from 'redux-form'
 
-const AddQuestionForm = reduxForm({ form: 'treasureHuntAdmin/AddQuestion' })(
+const AddQuestionForm = reduxForm({ form: 'qotdAdmin/AddQuestion' })(
   AddQuestionComponent
 )
 
 class AddQuestion extends React.Component {
-  onSubmit = question => {
+  onSubmit = ({ text, valid, invalidOne, invalidTwo, invalidThree }) => {
     this.props
-      .postQuestion(question)
-      .then(() => this.props.history.push('/quizadmin/create'))
+      .postQuestion({
+        text,
+        answers: { valid, invalid: [invalidOne, invalidTwo, invalidThree] }
+      })
+      .then(() => this.props.history.push('/qotdadmin/schedule'))
       .catch(console.err)
   }
 

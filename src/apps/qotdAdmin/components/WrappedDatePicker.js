@@ -1,5 +1,5 @@
 import React from 'react'
-import DateTimePicker from 'material-ui-pickers/DateTimePicker'
+import DatePicker from 'material-ui-pickers/DatePicker'
 
 export default props => {
   const {
@@ -14,7 +14,7 @@ export default props => {
   const showError = showErrorsInline || touched
 
   return (
-    <DateTimePicker
+    <DatePicker
       error={!!(showError && error)}
       helperText={showError && error}
       value={value || new Date()}

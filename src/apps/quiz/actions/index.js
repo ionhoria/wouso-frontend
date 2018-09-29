@@ -1,12 +1,14 @@
 import { apiRequest } from 'core/app/actions/api'
 import { SET_QUIZ } from './types'
 
+const ROOT_URL = 'apps/wouso-quiz'
+
 export const getQuiz = secret => dispatch =>
   new Promise((resolve, reject) =>
     dispatch(
       apiRequest({
         method: 'GET',
-        path: `apps/wouso-test-app/sessions/join/${secret}`,
+        path: `${ROOT_URL}/sessions/join/${secret}`,
         success: payload => dispatch => {
           dispatch(setQuiz(payload))
           resolve(payload)
@@ -31,7 +33,7 @@ export const postQuiz = () => {
       dispatch(
         apiRequest({
           method: 'POST',
-          path: 'apps/wouso-test-app/answers',
+          path: `${ROOT_URL}/answers`,
           data: {
             sessionId,
             answers

@@ -8,27 +8,24 @@ import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
 import MuiPickersUtilsProvider
   from 'material-ui-pickers/utils/MuiPickersUtilsProvider'
 
-import CreateQuizComponent from '../components/CreateQuiz'
-import { getQuestions, postQuiz } from '../actions'
+import ScheduleComponent from '../components/Schedule'
+import { getQuestions, schedule } from '../actions'
 
 import { reduxForm } from 'redux-form'
 
-const CreateQuizForm = reduxForm({ form: 'quizAdmin/CreateQuiz' })(
-  CreateQuizComponent
+const ScheduleForm = reduxForm({ form: 'qotdAdmin/Schedule' })(
+  ScheduleComponent
 )
 
-class CreateQuiz extends React.Component {
+class Schedule extends React.Component {
   componentDidMount () {
     this.props.getQuestions()
   }
 
-  onSubmit = ({ questions, ...quiz }) => {
+  onSubmit = ({ day, qotd: { id } }) => {
     this.props
-      .postQuiz({
-        ...quiz,
-        questions: questions.map(question => question.id)
-      })
-      .then(() => this.props.history.push('/quizadmin'))
+      .schedule({ qotd: id, day })
+      .then(() => this.props.history.push('/qotdadmin'))
       .catch(console.err)
   }
 
@@ -40,7 +37,7 @@ class CreateQuiz extends React.Component {
           href='https://fonts.googleapis.com/icon?family=Material+Icons'
         />
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <CreateQuizForm
+          <ScheduleForm
             questions={this.props.questions}
             onSubmit={this.onSubmit}
           />
@@ -54,4 +51,4 @@ const selector = createSelector(selectAppData(manifest), ({ questions }) => ({
   questions
 }))
 
-export default connect(selector, { getQuestions, postQuiz })(CreateQuiz)
+export default connect(selector, { getQuestions, schedule })(Schedule)
