@@ -25,13 +25,16 @@ const styles = theme => ({
   },
   column: {
     flexBasis: '50%'
+  },
+  widthHalf: {
+    width: '50%'
   }
-})
+});
 
 const renderQuiz = ({ quiz, classes }) => {
-  const { id, secret, name } = quiz
-  const start = new Date(quiz.start).toLocaleString()
-  const end = new Date(quiz.end).toLocaleString()
+  const { id, secret, name } = quiz;
+  const start = new Date(quiz.start).toLocaleString();
+  const end = new Date(quiz.end).toLocaleString();
 
   return (
     <ExpansionPanel key={id}>
@@ -66,7 +69,7 @@ const renderQuiz = ({ quiz, classes }) => {
       </ExpansionPanelActions>
     </ExpansionPanel>
   )
-}
+};
 
 const QuizList = ({ classes, quizes }) => (
   <React.Fragment>
@@ -76,10 +79,10 @@ const QuizList = ({ classes, quizes }) => (
     <Typography variant='subheading' gutterBottom>
       Deschide un quiz din lista de mai jos pentru detalii
     </Typography>
-    <List style={{ width: '50%' }}>
+    <List className={classes.widthHalf}>
       {Object.values(quizes).map(quiz => renderQuiz({ quiz, classes }))}
     </List>
   </React.Fragment>
-)
+);
 
 export default withStyles(styles)(QuizList)
