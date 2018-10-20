@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { withStyles, Paper, Typography } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
 const styles = theme => ({

@@ -1,13 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {
-  Button,
-  List,
-  Typography,
-  Paper,
-  ListItem,
-  ListItemText
-} from '@material-ui/core'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
 import TextField from '@material-ui/core/TextField'
 import { Field, FieldArray } from 'redux-form'
 import WrappedTextField from 'shared/reduxForm/components/TextField'
@@ -42,7 +40,7 @@ class CreateQuiz extends React.Component {
   }
 
   renderField = (question, fields) => {
-    const { id, text, answers } = question
+    const { id, text } = question
     return (
       <ListItem
         key={id}
