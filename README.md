@@ -13,12 +13,16 @@ sudo apt install git
 Follow the yarn install guide.
 https://yarnpkg.com/lang/en/docs/install/#debian-stable
 You might not have curl installed. Get it with:
+```
 sudo apt install curl
+```
 
 Clone the repo:
+```
 git clone https://github.com/ionhoria/wouso-frontend.git
+```
 
-Run yarn install and start the development server:
+Run yarn and start the development server:
 ```
 yarn
 yarn start
