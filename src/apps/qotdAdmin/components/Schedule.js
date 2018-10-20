@@ -87,9 +87,7 @@ class Schedule extends React.Component {
             name='day'
             component={WrappedDatePicker}
             label='Ziua'
-            style={{
-              display: 'flex'
-            }}
+            fullWidth={true}
             validate={required}
           />
           <TextField
@@ -98,7 +96,7 @@ class Schedule extends React.Component {
             placeholder='i.e. kernel'
             value={this.state.query}
             onChange={event => this.handleQuery(event)}
-            style={{ display: 'flex' }}
+            fullWidth={true}
           />
           <Field
             name='qotd'

@@ -21,7 +21,7 @@ const styles = theme => ({
   button: {
     marginLeft: '10px'
   }
-})
+});
 
 const AddQuestion = ({ classes, handleSubmit, onSubmit }) => {
   return (
@@ -34,35 +34,35 @@ const AddQuestion = ({ classes, handleSubmit, onSubmit }) => {
           name='text'
           label='Text întrebare'
           validate={required}
-          style={{ display: 'flex' }}
+          fullWidth={true}
         />
         <Field
           component={WrappedTextField}
           name='valid'
           label='Răspuns corect'
           validate={required}
-          style={{ display: 'flex' }}
+          fullWidth={true}
         />
         <Field
           component={WrappedTextField}
           name='invalidOne'
           label='Răspuns greșit'
           validate={required}
-          style={{ display: 'flex' }}
+          fullWidth={true}
         />
         <Field
           component={WrappedTextField}
           name='invalidTwo'
           label='Răspuns greșit'
           validate={required}
-          style={{ display: 'flex' }}
+          fullWidth={true}
         />
         <Field
           component={WrappedTextField}
           name='invalidThree'
           label='Răspuns greșit'
           validate={required}
-          style={{ display: 'flex' }}
+          fullWidth={true}
         />
         <div className={classes.actions}>
           <Button

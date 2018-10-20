@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -27,20 +28,36 @@ const styles = theme => ({
   },
   button: {
     marginLeft: '10px'
-  }
-})
+  },
+  flexRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    margin: '0 -5px',
+  },
+  flexColumnHalf: {
+    margin: '0 5px',
+    flex: '50% 0 0',
+  },
+  flexColumnFull: {
+    display: 'flex',
+    flex: '100% 0 0',
+  },
+  textCenter: {
+    textAlign: 'center'
+  },
+});
 
 class CreateQuiz extends React.Component {
   state = {
     query: ''
-  }
+  };
 
   handleQuery (event) {
     this.setState({ query: event.target.value.toLowerCase() })
   }
 
   renderField = (question, fields) => {
-    const { id, text } = question
+    const { id, text } = question;
     return (
       <ListItem
         key={id}
@@ -54,21 +71,21 @@ class CreateQuiz extends React.Component {
         <ListItemText primary={text} />
       </ListItem>
     )
-  }
+  };
 
   renderSelected = (question, fields, index) => {
-    const { id, text } = fields.get(index)
+    const { id, text } = fields.get(index);
     return (
       <ListItem key={id} button onClick={() => fields.remove(index)}>
         <ListItemText primary={`${index + 1}. ${text}`} />
       </ListItem>
     )
-  }
+  };
 
   renderFieldArray = ({ fields }) => (
     <React.Fragment>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div style={{ flexBasis: '66.66%' }}>
+      <div className={this.props.classes.flexRow}>
+        <Grid item xs={8}>
           <List style={{ height: 334, overflow: 'auto' }}>
             {this.state.query
               ? this.props.questions
@@ -78,11 +95,11 @@ class CreateQuiz extends React.Component {
                   this.renderField(question, fields)
                 )}
           </List>
-        </div>
-        <div style={{ flexBasis: '33.33%' }}>
+        </Grid>
+        <Grid item xs={4}>
           <Typography
             variant='subheading'
-            style={{ textAlign: 'center' }}
+            className={this.props.classes.textCenter}
             color='primary'
           >
             {fields.length} întrebări selectate:
@@ -93,7 +110,7 @@ class CreateQuiz extends React.Component {
             )}
           </List>
 
-        </div>
+        </Grid>
       </div>
       <div className={this.props.classes.actions}>
         <Button
@@ -115,13 +132,13 @@ class CreateQuiz extends React.Component {
         </Button>
       </div>
     </React.Fragment>
-  )
+  );
 
   validateFieldArray = (value, allValues, props) => {
     return !value || value.length === 0
       ? 'Un quiz trebuie să conțină cel puțin o întrebare!'
       : undefined
-  }
+  };
 
   render () {
     const { classes, handleSubmit, onSubmit } = this.props
@@ -133,17 +150,13 @@ class CreateQuiz extends React.Component {
             Alege intrebările quiz-ului din lista de mai jos. Poți folosi mecanismul de filtrare.
           </Typography>
 
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div className={this.props.classes.flexRow}>
             <Field
               name='name'
               component={WrappedTextField}
               label='Nume quiz'
               validate={required}
-              style={{
-                display: 'flex',
-                flexBasis: '50%',
-                paddingRight: '4px'
-              }}
+              className={this.props.classes.flexColumnHalf}
             />
             {/* Should be auto generated at some point in the future */}
             <Field
@@ -151,36 +164,22 @@ class CreateQuiz extends React.Component {
               component={WrappedTextField}
               label='Cod secret'
               validate={required}
-              style={{
-                display: 'flex',
-                flexBasis: '50%',
-                paddingLeft: '4px'
-              }}
+              className={this.props.classes.flexColumnHalf}
             />
           </div>
-          <div
-            style={{ display: 'flex', flexDirection: 'row', paddingTop: '8px' }}
-          >
+          <div className={this.props.classes.flexRow}>
             <Field
               name='start'
               component={WrappedDateTimePicker}
               label='Început'
-              style={{
-                display: 'flex',
-                flexBasis: '50%',
-                paddingRight: '4px'
-              }}
+              className={this.props.classes.flexColumnHalf}
               validate={required}
             />
             <Field
               name='end'
               component={WrappedDateTimePicker}
               label='Sfârșit'
-              style={{
-                display: 'flex',
-                flexBasis: '50%',
-                paddingLeft: '4px'
-              }}
+              className={this.props.classes.flexColumnHalf}
               validate={required}
             />
           </div>
@@ -190,7 +189,7 @@ class CreateQuiz extends React.Component {
             placeholder='i.e. kernel'
             value={this.state.query}
             onChange={event => this.handleQuery(event)}
-            style={{ display: 'flex' }}
+            className={this.props.classes.flexColumnFull}
           />
           <FieldArray
             name='questions'

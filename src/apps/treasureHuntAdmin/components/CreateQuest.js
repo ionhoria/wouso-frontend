@@ -8,6 +8,7 @@ import {
   ListItem,
   ListItemText
 } from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
 
 import { Field, FieldArray } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
@@ -29,20 +30,28 @@ const styles = theme => ({
   },
   button: {
     marginLeft: '10px'
-  }
-})
+  },
+  textCenter: {
+      textAlign: 'center'
+  },
+  flexRow: {
+      display: 'flex',
+      flexDirection: 'row',
+      margin: '0 -5px',
+  },
+});
 
 class CreateQuest extends React.Component {
   state = {
     query: ''
-  }
+  };
 
   handleQuery (event) {
     this.setState({ query: event.target.value.toLowerCase() })
   }
 
   renderField = (question, fields) => {
-    const { id, text, answers } = question
+    const { id, text, answers } = question;
     return (
       <ListItem
         key={id}
@@ -59,21 +68,21 @@ class CreateQuest extends React.Component {
         />
       </ListItem>
     )
-  }
+  };
 
   renderSelected = (question, fields, index) => {
-    const { id, text } = fields.get(index)
+    const { id, text } = fields.get(index);
     return (
       <ListItem key={id} button onClick={() => fields.remove(index)}>
         <ListItemText primary={`${index + 1}. ${text}`} />
       </ListItem>
     )
-  }
+  };
 
   renderFieldArray = ({ fields }) => (
     <React.Fragment>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div style={{ flexBasis: '66.66%' }}>
+      <div className={this.props.classes.flexRow}>
+        <Grid xs={8}>
           <List style={{ maxHeight: 370, overflow: 'auto' }}>
             {this.state.query
               ? this.props.questions
@@ -83,16 +92,16 @@ class CreateQuest extends React.Component {
                   this.renderField(question, fields)
                 )}
           </List>
-        </div>
-        <div style={{ flexBasis: '33.33%' }}>
+        </Grid>
+        <Grid xs={4}>
           <Typography
             variant='subheading'
-            style={{ textAlign: 'center' }}
+            className={this.props.classes.textCenter}
             color='primary'
           >
             {fields.length} / 10
           </Typography>
-          <Typography variant='subheading' style={{ textAlign: 'center' }}>
+          <Typography variant='subheading' className={this.props.classes.textCenter}>
             Întrebări selectate (afișate jucătorului în această ordine):
           </Typography>
           <List dense style={{ maxHeight: 306, overflow: 'auto' }}>
@@ -101,7 +110,7 @@ class CreateQuest extends React.Component {
             )}
           </List>
 
-        </div>
+        </Grid>
       </div>
       <div className={this.props.classes.actions}>
         <Button
@@ -123,16 +132,16 @@ class CreateQuest extends React.Component {
         </Button>
       </div>
     </React.Fragment>
-  )
+  );
 
   validateFieldArray = (value, allValues, props) => {
     return !value || value.length !== 10
       ? 'Un quest trebuie sa aibă fix 10 întrebări!'
       : undefined
-  }
+  };
 
   render () {
-    const { classes, handleSubmit, onSubmit } = this.props
+    const { classes, handleSubmit, onSubmit } = this.props;
     return (
       <Paper className={classes.paper}>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -146,9 +155,7 @@ class CreateQuest extends React.Component {
             component={WrappedTextField}
             label='Nume quest'
             validate={required}
-            style={{
-              display: 'flex'
-            }}
+            fullWidth={true}
           />
           <TextField
             id='filterQuestions'
@@ -156,7 +163,7 @@ class CreateQuest extends React.Component {
             placeholder='i.e. kernel'
             value={this.state.query}
             onChange={event => this.handleQuery(event)}
-            style={{ display: 'flex' }}
+            fullWidth={true}
           />
           <FieldArray
             name='questions'

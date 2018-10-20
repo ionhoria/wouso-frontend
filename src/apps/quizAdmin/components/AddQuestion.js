@@ -33,7 +33,7 @@ const AddQuestion = ({ classes, handleSubmit, onSubmit }) => {
           name='text'
           label='Text întrebare'
           validate={required}
-          style={{ display: 'flex' }}
+          fullWidth={true}
         />
         <div className={classes.actions}>
           <Button
