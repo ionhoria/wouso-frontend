@@ -21,7 +21,9 @@ class Answer extends React.Component {
   }
 
   render () {
-    if (!this.props.qotd.text) return null
+    if (!this.props.qotd || !this.props.qotd.text) {
+      return <div>Momentan nu exista un QOTD</div>
+    }
     return <AnswerForm onSubmit={this.onSubmit} qotd={this.props.qotd} />
   }
 }
