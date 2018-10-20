@@ -16,7 +16,7 @@ You might not have curl installed. Get it with:
 sudo apt install curl
 
 Clone the repo:
-git clone https://*repo-url*.git
+git clone https://github.com/ionhoria/wouso-frontend.git
 
 Run yarn install and start the development server:
 ```
