@@ -6,7 +6,6 @@ import { FormControl, FormControlLabel, Radio } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import WrappedRadioGroup from './WrappedRadioGroup'
-import Countdown from 'react-countdown-now'
 
 import { withStyles } from '@material-ui/core'
 
@@ -77,11 +76,6 @@ const Solve = ({ classes, active, handleSubmit, onSubmit, redirect }) => {
         </FormControl>
 
         <div className={classes.actions}>
-          {/* <Countdown
-            date={new Date(active.createdAt).getTime() + 100 * 1000}
-            onComplete={redirect}
-            renderer={renderer}
-          /> */}
           <Button
             variant='contained'
             color='secondary'
