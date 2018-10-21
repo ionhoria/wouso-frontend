@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
@@ -18,7 +18,7 @@ const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 3
   }
-})
+});
 
 const Statistics = ({ classes, statistics }) => (
   <div className={classes.container}>
@@ -50,6 +50,6 @@ const Statistics = ({ classes, statistics }) => (
       </Table>
     </Paper>
   </div>
-)
+);
 
 export default withStyles(styles)(Statistics)

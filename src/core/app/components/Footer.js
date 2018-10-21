@@ -1,6 +1,5 @@
 import React from 'react'
-
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 import Divider from '@material-ui/core/Divider'
 
 const styles = theme => ({
@@ -15,7 +14,7 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit,
     paddingBottom: theme.spacing.unit
   }
-})
+});
 
 const Footer = ({ classes, children }) => (
   <div className={classes.container}>
@@ -24,6 +23,6 @@ const Footer = ({ classes, children }) => (
       {children}
     </div>
   </div>
-)
+);
 
 export default withStyles(styles)(Footer)

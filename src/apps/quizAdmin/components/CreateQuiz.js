@@ -13,7 +13,7 @@ import WrappedTextField from 'shared/reduxForm/components/TextField'
 import WrappedDateTimePicker from './WrappedDateTimePicker'
 import { required } from 'utils/validators'
 
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   paper: {
@@ -141,7 +141,7 @@ class CreateQuiz extends React.Component {
   };
 
   render () {
-    const { classes, handleSubmit, onSubmit } = this.props
+    const { classes, handleSubmit, onSubmit } = this.props;
     return (
       <Paper className={classes.paper}>
         <form onSubmit={handleSubmit(onSubmit)}>

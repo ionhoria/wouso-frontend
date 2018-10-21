@@ -31,14 +31,14 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'flex-end'
   }
-})
+});
 
 class GradeQuiz extends React.Component {
   renderAnswer = answer => {
-    const { userId: id, text, grade } = answer
+    const { userId: id, text, grade } = answer;
     const status = grade === null
       ? 'NOT GRADED'
-      : grade === 10 ? 'CORRECT' : 'INCORRECT'
+      : grade === 10 ? 'CORRECT' : 'INCORRECT';
     return (
       <React.Fragment key={id}>
         <Divider />
@@ -49,11 +49,11 @@ class GradeQuiz extends React.Component {
         </ListItem>
       </React.Fragment>
     )
-  }
+  };
 
   renderQuestion = (question, answers) => {
-    const { classes } = this.props
-    const { id, text } = question
+    const { classes } = this.props;
+    const { id, text } = question;
     return (
       <ExpansionPanel key={id}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -70,10 +70,10 @@ class GradeQuiz extends React.Component {
         </ExpansionPanelDetails>Paper
       </ExpansionPanel>
     )
-  }
+  };
 
   render = () => {
-    const { classes, quiz, quizAnswers } = this.props
+    const { classes, quiz, quizAnswers } = this.props;
     return (
       <div>
         <Typography variant='title' gutterBottom>

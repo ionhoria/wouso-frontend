@@ -2,7 +2,7 @@ import React from 'react'
 import Wrapped from '@material-ui/core/TextField'
 
 const TextField = ({ input, meta, ...rest }) => {
-  const hasError = !!(meta.touched && meta.error)
+  const hasError = !!(meta.touched && meta.error);
 
   return (
     <React.Fragment>
@@ -14,6 +14,6 @@ const TextField = ({ input, meta, ...rest }) => {
       />
     </React.Fragment>
   )
-}
+};
 
 export default TextField

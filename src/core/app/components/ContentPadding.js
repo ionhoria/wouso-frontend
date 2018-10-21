@@ -1,6 +1,5 @@
 import React from 'react'
-
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar,
@@ -8,12 +7,12 @@ const styles = theme => ({
     paddingLeft: theme.custom.drawer.width,
     backgroundColor: theme.palette.background.default
   }
-})
+});
 
 const ContentPadding = ({ classes, children }) => (
   <div className={classes.container}>
     {' '}<div className={classes.toolbar} />{children}
   </div>
-)
+);
 
 export default withStyles(styles)(ContentPadding)

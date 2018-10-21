@@ -3,10 +3,8 @@ import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { parse } from 'querystring'
-
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
-
 import SignInForm from '../components/SignInForm'
 import { signIn } from '../actions'
 import { isUserAuthenticated } from '../reducers/user'
@@ -16,23 +14,23 @@ const styles = theme => ({
     width: 400,
     padding: '48px 40px 36px'
   }
-})
+});
 
-const Form = reduxForm({ form: 'signIn' })(SignInForm)
+const Form = reduxForm({ form: 'signIn' })(SignInForm);
 
 class SignIn extends Component {
   handleSubmit = ({ username, password }) =>
-    this.props.signIn(username, password)
+    this.props.signIn(username, password);
 
   renderRedirect () {
-    const { location: { search } } = this.props
-    const { from } = parse(search.substr(1))
+    const { location: { search } } = this.props;
+    const { from } = parse(search.substr(1));
 
     return <Redirect to={from || '/'} />
   }
 
   render () {
-    const { classes, authenticated } = this.props
+    const { classes, authenticated } = this.props;
 
     if (authenticated) {
       return this.renderRedirect()

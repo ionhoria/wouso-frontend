@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
 const styles = theme => ({
@@ -20,16 +20,16 @@ const styles = theme => ({
     width: '100%',
     zIndex: 5001
   }
-})
+});
 
 class LoadingOverlay extends React.Component {
   state = {
     loading: false
-  }
+  };
 
   setLoading (loading) {
     if (this.timeout) {
-      clearTimeout(this.timeout)
+      clearTimeout(this.timeout);
       this.timeout = null
     }
 
@@ -47,7 +47,7 @@ class LoadingOverlay extends React.Component {
       return this.setLoading(false)
     }
 
-    const { delay } = this.props
+    const { delay } = this.props;
 
     if (!delay || delay < 0) {
       /* Start loading instantly */
@@ -59,8 +59,8 @@ class LoadingOverlay extends React.Component {
   }
 
   render () {
-    const { classes, children } = this.props
-    const { loading } = this.state
+    const { classes, children } = this.props;
+    const { loading } = this.state;
 
     return (
       <div className={classes.container}>

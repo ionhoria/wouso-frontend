@@ -1,10 +1,8 @@
 import React from 'react'
 import { Field } from 'redux-form'
-
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-
 import TextField from 'shared/reduxForm/components/TextField'
 import { required } from 'utils/validators'
 
@@ -14,7 +12,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'flex-end'
   }
-})
+});
 
 const SignInForm = ({ classes, onSubmit, valid, handleSubmit, ...rest }) => (
   <form onSubmit={handleSubmit(onSubmit)}>
@@ -53,6 +51,6 @@ const SignInForm = ({ classes, onSubmit, valid, handleSubmit, ...rest }) => (
       </Button>
     </div>
   </form>
-)
+);
 
 export default withStyles(styles)(SignInForm)

@@ -1,6 +1,5 @@
 import React from 'react'
-
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
@@ -8,7 +7,7 @@ const styles = theme => ({
     fontSize: theme.custom.icon.error.size,
     marginBottom: theme.spacing.unit
   }
-})
+});
 
 const IconPage = ({ classes, text, icon: Icon }) => (
   <React.Fragment>
@@ -17,6 +16,6 @@ const IconPage = ({ classes, text, icon: Icon }) => (
       {text}
     </Typography>
   </React.Fragment>
-)
+);
 
 export default withStyles(styles)(IconPage)

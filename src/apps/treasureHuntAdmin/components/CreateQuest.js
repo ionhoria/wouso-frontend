@@ -1,13 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {
-  Button,
-  List,
-  Typography,
-  Paper,
-  ListItem,
-  ListItemText
-} from '@material-ui/core'
+import Button from '@material-ui/core/Button'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 
 import { Field, FieldArray } from 'redux-form'
@@ -15,7 +13,7 @@ import TextField from '@material-ui/core/TextField'
 import WrappedTextField from 'shared/reduxForm/components/TextField'
 import { required } from 'utils/validators'
 
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   paper: {

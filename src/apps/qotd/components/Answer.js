@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import WrappedRadioGroup from './WrappedRadioGroup'
 
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   paper: {
@@ -24,12 +24,12 @@ const styles = theme => ({
   button: {
     marginLeft: '10px'
   }
-})
+});
 
-const required = value => (!value ? 'Trebuie să alegi un răspuns' : undefined)
+const required = value => (!value ? 'Trebuie să alegi un răspuns' : undefined);
 
 const Answer = ({ classes, qotd, handleSubmit, onSubmit }) => {
-  const { answers, text: questionText } = qotd
+  const { answers, text: questionText } = qotd;
   return (
     <Paper className={classes.paper}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -86,6 +86,6 @@ const Answer = ({ classes, qotd, handleSubmit, onSubmit }) => {
       </form>
     </Paper>
   )
-}
+};
 
 export default withStyles(styles)(Answer)

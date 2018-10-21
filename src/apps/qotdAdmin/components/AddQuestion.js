@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import WrappedTextField from 'shared/reduxForm/components/TextField'
 import { required } from 'utils/validators'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   paper: {
@@ -86,6 +86,6 @@ const AddQuestion = ({ classes, handleSubmit, onSubmit }) => {
 
     </Paper>
   )
-}
+};
 
 export default withStyles(styles)(AddQuestion)

@@ -2,16 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemAvatar,
-  Avatar
-} from '@material-ui/core'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import Avatar from '@material-ui/core/Avatar'
 import AssignmentIcon from '@material-ui/icons/Assignment'
 
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   paper: {
@@ -26,7 +24,7 @@ const styles = theme => ({
   button: {
     marginLeft: '10px'
   }
-})
+});
 
 const renderQuest = quest => (
   <ListItem key={quest.id} button component={Link} to={`solve/${quest.id}`}>
@@ -37,7 +35,7 @@ const renderQuest = quest => (
     </ListItemAvatar>
     <ListItemText primary={quest.name} />
   </ListItem>
-)
+);
 
 const Dashboard = ({ classes, quests }) => {
   return (
@@ -50,6 +48,6 @@ const Dashboard = ({ classes, quests }) => {
 
     </Paper>
   )
-}
+};
 
 export default withStyles(styles)(Dashboard)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox } from '@material-ui/core'
+import Checkbox from '@material-ui/core/Checkbox'
 
 const WrappedCheckbox = ({ input }) => (
   <Checkbox
@@ -7,6 +7,6 @@ const WrappedCheckbox = ({ input }) => (
     checked={input.checked}
     onClick={input.onChange}
   />
-)
+);
 
 export default WrappedCheckbox
