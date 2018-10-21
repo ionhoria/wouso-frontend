@@ -8,7 +8,9 @@
 The following guide has been tested on Ubuntu 18.04.1 LTS
 
 You will need to have git installed (we hope you already do):
+```
 sudo apt install git
+```
 
 Follow the yarn install guide.
 https://yarnpkg.com/lang/en/docs/install/#debian-stable

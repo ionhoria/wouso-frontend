@@ -23,7 +23,7 @@
     "reselect": "^3.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "docker build && docker run && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
