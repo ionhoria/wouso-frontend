@@ -1,10 +1,8 @@
 import React from 'react'
 import { Field } from 'redux-form'
-
-import { withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-
 import TextField from 'shared/reduxForm/components/TextField'
 import { required } from 'utils/validators'
 

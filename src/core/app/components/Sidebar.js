@@ -1,7 +1,6 @@
 import React from 'react'
-
-import { withStyles } from '@material-ui/core'
 import Drawer from '@material-ui/core/Drawer'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 const styles = theme => ({
   drawerPaper: { width: theme.custom.drawer.width },

@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
-import { Collapse } from '@material-ui/core'
+import Collapse from '@material-ui/core/Collapse'
 
 const styles = theme => ({})
 

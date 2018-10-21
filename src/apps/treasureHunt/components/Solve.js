@@ -2,13 +2,14 @@ import React from 'react'
 import { Field } from 'redux-form'
 import { Link } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
-import { FormControl, FormControlLabel, Radio } from '@material-ui/core'
+import FormControl from '@material-ui/core/FormControl'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Radio from '@material-ui/core/Radio'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import WrappedRadioGroup from './WrappedRadioGroup'
-import Countdown from 'react-countdown-now'
 
-import { withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 const styles = theme => ({
   paper: {
@@ -77,11 +78,6 @@ const Solve = ({ classes, active, handleSubmit, onSubmit, redirect }) => {
         </FormControl>
 
         <div className={classes.actions}>
-          {/* <Countdown
-            date={new Date(active.createdAt).getTime() + 100 * 1000}
-            onComplete={redirect}
-            renderer={renderer}
-          /> */}
           <Button
             variant='contained'
             color='secondary'

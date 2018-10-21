@@ -1,6 +1,5 @@
 import React from 'react'
-
-import { withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
 import Divider from '@material-ui/core/Divider'
 
 const styles = theme => ({

@@ -13,7 +13,7 @@ import WrappedTextField from 'shared/reduxForm/components/TextField'
 import WrappedDateTimePicker from './WrappedDateTimePicker'
 import { required } from 'utils/validators'
 
-import { withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 const styles = theme => ({
   paper: {
@@ -45,12 +45,12 @@ const styles = theme => ({
   textCenter: {
     textAlign: 'center'
   },
-});
+})
 
 class CreateQuiz extends React.Component {
   state = {
     query: ''
-  };
+  }
 
   handleQuery (event) {
     this.setState({ query: event.target.value.toLowerCase() })
@@ -71,7 +71,7 @@ class CreateQuiz extends React.Component {
         <ListItemText primary={text} />
       </ListItem>
     )
-  };
+  }
 
   renderSelected = (question, fields, index) => {
     const { id, text } = fields.get(index);
@@ -80,7 +80,7 @@ class CreateQuiz extends React.Component {
         <ListItemText primary={`${index + 1}. ${text}`} />
       </ListItem>
     )
-  };
+  }
 
   renderFieldArray = ({ fields }) => (
     <React.Fragment>
@@ -132,16 +132,16 @@ class CreateQuiz extends React.Component {
         </Button>
       </div>
     </React.Fragment>
-  );
+  )
 
   validateFieldArray = (value, allValues, props) => {
     return !value || value.length === 0
       ? 'Un quiz trebuie să conțină cel puțin o întrebare!'
       : undefined
-  };
+  }
 
   render () {
-    const { classes, handleSubmit, onSubmit } = this.props
+    const { classes, handleSubmit, onSubmit } = this.props;
     return (
       <Paper className={classes.paper}>
         <form onSubmit={handleSubmit(onSubmit)}>

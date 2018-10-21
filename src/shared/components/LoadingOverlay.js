@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
 const styles = theme => ({

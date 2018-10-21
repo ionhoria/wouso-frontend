@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom/'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField'
 import WrappedDatePicker from './WrappedDatePicker'
 import { required } from 'utils/validators'
 
-import { withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 const styles = theme => ({
   paper: {
@@ -40,7 +40,7 @@ class Schedule extends React.Component {
   }
 
   renderField = (question, input) => {
-    const { id, text, answers } = question
+    const { id, text, answers } = question;
     return (
       <ListItem key={id} button onClick={() => input.onChange({ id, text })}>
         <ListItemText

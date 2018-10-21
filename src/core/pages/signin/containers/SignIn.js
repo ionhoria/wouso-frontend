@@ -3,10 +3,8 @@ import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { parse } from 'querystring'
-
-import { withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
 import Paper from '@material-ui/core/Paper'
-
 import SignInForm from '../components/SignInForm'
 import { signIn } from '../actions'
 import { isUserAuthenticated } from '../reducers/user'

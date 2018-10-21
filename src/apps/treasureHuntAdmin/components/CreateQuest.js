@@ -1,13 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {
-  Button,
-  List,
-  Typography,
-  Paper,
-  ListItem,
-  ListItemText
-} from '@material-ui/core'
+import Button from '@material-ui/core/Button'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 
 import { Field, FieldArray } from 'redux-form'
@@ -15,7 +13,7 @@ import TextField from '@material-ui/core/TextField'
 import WrappedTextField from 'shared/reduxForm/components/TextField'
 import { required } from 'utils/validators'
 
-import { withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 const styles = theme => ({
   paper: {
@@ -39,12 +37,12 @@ const styles = theme => ({
       flexDirection: 'row',
       margin: '0 -5px',
   },
-});
+})
 
 class CreateQuest extends React.Component {
   state = {
     query: ''
-  };
+  }
 
   handleQuery (event) {
     this.setState({ query: event.target.value.toLowerCase() })
@@ -68,7 +66,7 @@ class CreateQuest extends React.Component {
         />
       </ListItem>
     )
-  };
+  }
 
   renderSelected = (question, fields, index) => {
     const { id, text } = fields.get(index);
@@ -77,7 +75,7 @@ class CreateQuest extends React.Component {
         <ListItemText primary={`${index + 1}. ${text}`} />
       </ListItem>
     )
-  };
+  }
 
   renderFieldArray = ({ fields }) => (
     <React.Fragment>
@@ -132,13 +130,13 @@ class CreateQuest extends React.Component {
         </Button>
       </div>
     </React.Fragment>
-  );
+  )
 
   validateFieldArray = (value, allValues, props) => {
     return !value || value.length !== 10
       ? 'Un quest trebuie sa aibă fix 10 întrebări!'
       : undefined
-  };
+  }
 
   render () {
     const { classes, handleSubmit, onSubmit } = this.props;
