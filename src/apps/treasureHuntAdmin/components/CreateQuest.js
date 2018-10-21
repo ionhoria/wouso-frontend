@@ -13,7 +13,7 @@ import TextField from '@material-ui/core/TextField'
 import WrappedTextField from 'shared/reduxForm/components/TextField'
 import { required } from 'utils/validators'
 
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 const styles = theme => ({
   paper: {
@@ -37,12 +37,12 @@ const styles = theme => ({
       flexDirection: 'row',
       margin: '0 -5px',
   },
-});
+})
 
 class CreateQuest extends React.Component {
   state = {
     query: ''
-  };
+  }
 
   handleQuery (event) {
     this.setState({ query: event.target.value.toLowerCase() })
@@ -66,7 +66,7 @@ class CreateQuest extends React.Component {
         />
       </ListItem>
     )
-  };
+  }
 
   renderSelected = (question, fields, index) => {
     const { id, text } = fields.get(index);
@@ -75,7 +75,7 @@ class CreateQuest extends React.Component {
         <ListItemText primary={`${index + 1}. ${text}`} />
       </ListItem>
     )
-  };
+  }
 
   renderFieldArray = ({ fields }) => (
     <React.Fragment>
@@ -130,13 +130,13 @@ class CreateQuest extends React.Component {
         </Button>
       </div>
     </React.Fragment>
-  );
+  )
 
   validateFieldArray = (value, allValues, props) => {
     return !value || value.length !== 10
       ? 'Un quest trebuie sa aibă fix 10 întrebări!'
       : undefined
-  };
+  }
 
   render () {
     const { classes, handleSubmit, onSubmit } = this.props;

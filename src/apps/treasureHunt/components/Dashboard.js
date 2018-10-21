@@ -8,8 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
 import AssignmentIcon from '@material-ui/icons/Assignment'
-
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 const styles = theme => ({
   paper: {
@@ -24,7 +23,7 @@ const styles = theme => ({
   button: {
     marginLeft: '10px'
   }
-});
+})
 
 const renderQuest = quest => (
   <ListItem key={quest.id} button component={Link} to={`solve/${quest.id}`}>
@@ -35,7 +34,7 @@ const renderQuest = quest => (
     </ListItemAvatar>
     <ListItemText primary={quest.name} />
   </ListItem>
-);
+)
 
 const Dashboard = ({ classes, quests }) => {
   return (
@@ -48,6 +47,6 @@ const Dashboard = ({ classes, quests }) => {
 
     </Paper>
   )
-};
+}
 
 export default withStyles(styles)(Dashboard)

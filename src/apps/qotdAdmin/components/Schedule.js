@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom/'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField'
 import WrappedDatePicker from './WrappedDatePicker'
 import { required } from 'utils/validators'
 
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 const styles = theme => ({
   paper: {
@@ -28,12 +28,12 @@ const styles = theme => ({
   button: {
     marginLeft: '10px'
   }
-});
+})
 
 class Schedule extends React.Component {
   state = {
     query: ''
-  };
+  }
 
   handleQuery (event) {
     this.setState({ query: event.target.value.toLowerCase() })
@@ -49,7 +49,7 @@ class Schedule extends React.Component {
         />
       </ListItem>
     )
-  };
+  }
 
   renderSelect = ({ input, meta: { touched, error } }) => (
     <React.Fragment>
@@ -71,10 +71,10 @@ class Schedule extends React.Component {
         QoTD: {input.value.text}
       </Typography>
     </React.Fragment>
-  );
+  )
 
   render () {
-    const { classes, handleSubmit, onSubmit } = this.props;
+    const { classes, handleSubmit, onSubmit } = this.props
     return (
       <Paper className={classes.paper}>
         <form onSubmit={handleSubmit(onSubmit)}>

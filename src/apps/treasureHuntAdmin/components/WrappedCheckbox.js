@@ -7,6 +7,6 @@ const WrappedCheckbox = ({ input }) => (
     checked={input.checked}
     onClick={input.onChange}
   />
-);
+)
 
 export default WrappedCheckbox

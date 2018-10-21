@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -8,11 +8,11 @@ import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import Collapse from '@material-ui/core/Collapse'
 
-const styles = theme => ({});
+const styles = theme => ({})
 
 class NavList extends React.Component {
   constructor (props) {
-    super(props);
+    super(props)
 
     this.state = {
       expanded: !!props.expanded
@@ -25,18 +25,18 @@ class NavList extends React.Component {
     }
   }
 
-  handleExpand = () => this.setState({ expanded: !this.state.expanded });
+  handleExpand = () => this.setState({ expanded: !this.state.expanded })
 
-  handleNavigate = () => this.props.onNavigate(this.props.path);
+  handleNavigate = () => this.props.onNavigate(this.props.path)
 
   render () {
-    const { title, sub, theme, onNavigate } = this.props;
-    const paddingUnit = 2 * theme.spacing.unit;
-    const { padding = paddingUnit } = this.props;
-    const { expanded } = this.state;
+    const { title, sub, theme, onNavigate } = this.props
+    const paddingUnit = 2 * theme.spacing.unit
+    const { padding = paddingUnit } = this.props
+    const { expanded } = this.state
 
-    const canNavigate = !sub || sub.length === 0;
-    const expand = !canNavigate && (expanded ? <ExpandLess /> : <ExpandMore />);
+    const canNavigate = !sub || sub.length === 0
+    const expand = !canNavigate && (expanded ? <ExpandLess /> : <ExpandMore />)
 
     return (
       <List component='nav'>
