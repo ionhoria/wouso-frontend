@@ -23,10 +23,10 @@ import Orchestrator from '../containers/Orchestrator'
  */
 const LoadingOverlay = withRouter(LoadingOverlayComponent)
 
-const renderContent = ({ navigation, routes, title }) => (
+const renderContent = ({ navigation, routes, title, user }) => (
   <React.Fragment>
     <Sidebar>{navigation}</Sidebar>
-    <Header title={title} />
+    <Header title={title} user={user} />
     <ContentPadding>
       <LoadingOverlay delay={1000}>
         <Content>

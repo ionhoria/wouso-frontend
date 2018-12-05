@@ -28,15 +28,6 @@ const styles = theme => ({
 
 const required = value => (!value ? 'Trebuie să alegi un răspuns' : undefined)
 
-const renderer = ({ minutes, seconds }) => (
-  <Typography
-    variant='title'
-    style={{ paddingRight: '10px', paddingTop: '6px' }}
-  >
-    {minutes}m:{seconds}s
-  </Typography>
-)
-
 const Solve = ({ classes, active, handleSubmit, onSubmit, redirect }) => {
   const { answers, text: questionText } = active.question
   return (

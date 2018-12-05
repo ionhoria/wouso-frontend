@@ -137,7 +137,8 @@ class Orchestrator extends React.Component {
     return render({
       navigation: this.state.usable.map(this.renderNavigation),
       routes: this.state.usable.map(this.renderRoutes),
-      title: this.getTitle()
+      title: this.getTitle(),
+      user: this.props.user
     })
   }
 }
@@ -145,7 +146,7 @@ class Orchestrator extends React.Component {
 const selector = createSelector(
   selectUser,
   createSelector(selectOrchestration, selectApps),
-  ({ authenticated }, apps) => ({ authenticated, apps })
+  (user, apps) => ({ user, authenticated: user.authenticated, apps })
 )
 
 export default withRouter(connect(selector, { getApps })(Orchestrator))
