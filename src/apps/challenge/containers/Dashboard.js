@@ -4,48 +4,23 @@ import { createSelector } from 'reselect'
 import * as manifest from '../manifest'
 import { selectAppData } from 'core/app/reducers'
 
-import {
-  fetchChallenges,
-  fetchUsers,
-  postChallenge,
-  acceptChallenge,
-  declineChallenge
-} from '../actions'
+import { fetchChallenge, queryUsers } from '../actions'
 
 import DashboardComponent from '../components/Dashboard'
 
 class Dashboard extends React.Component {
-  componentDidMount () {
-    this.fetchState()
-  }
+  componentDidMount () {}
 
-  fetchState = () => {
-    this.props.fetchChallenges()
-    this.props.fetchUsers()
-  }
-
-  sendChallenge = user => {
-    this.props.postChallenge(user).then(this.fetchState)
-  }
-
-  acceptChallenge = () => this.props.acceptChallenge().then(this.playChallenge)
-
-  playChallenge = () => this.props.history.push('answer')
-
-  declineChallenge = () => {
-    this.props.declineChallenge().then(this.fetchState)
+  queryUsers = query => {
+    this.props.queryUsers(query)
   }
 
   render () {
     return (
       <DashboardComponent
-        challenges={this.props.challenges}
+        challenge={this.props.challenge}
         users={this.props.users}
-        sendChallenge={this.sendChallenge}
-        fetchState={this.fetchState}
-        acceptChallenge={this.acceptChallenge}
-        declineChallenge={this.declineChallenge}
-        playChallenge={this.playChallenge}
+        queryUsers={this.queryUsers}
       />
     )
   }
@@ -53,16 +28,13 @@ class Dashboard extends React.Component {
 
 const selector = createSelector(
   selectAppData(manifest),
-  ({ challenges, users }) => ({
-    challenges,
+  ({ challenge, users }) => ({
+    challenge,
     users
   })
 )
 
-export default connect(selector, {
-  fetchChallenges,
-  fetchUsers,
-  postChallenge,
-  acceptChallenge,
-  declineChallenge
-})(Dashboard)
+export default connect(
+  selector,
+  { queryUsers, fetchChallenge }
+)(Dashboard)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { reduxForm } from 'redux-form'
+import { reduxForm, SubmissionError } from 'redux-form'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { parse } from 'querystring'
@@ -10,20 +10,23 @@ import { signIn } from '../actions'
 import { isUserAuthenticated } from '../reducers/user'
 
 const styles = theme => ({
-  paper: {
-    width: 400,
-    padding: '48px 40px 36px'
-  }
+  paper: theme.paper
 })
 
 const Form = reduxForm({ form: 'signIn' })(SignInForm)
 
 class SignIn extends Component {
   handleSubmit = ({ username, password }) =>
-    this.props.signIn(username, password)
+    this.props.signIn(username, password).catch(() => {
+      throw new SubmissionError({
+        _error: 'Datele de autentificare introduse sunt invalide!'
+      })
+    })
 
   renderRedirect () {
-    const { location: { search } } = this.props
+    const {
+      location: { search }
+    } = this.props
     const { from } = parse(search.substr(1))
 
     return <Redirect to={from || '/'} />

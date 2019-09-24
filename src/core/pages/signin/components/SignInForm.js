@@ -14,13 +14,16 @@ const styles = theme => ({
   }
 })
 
-const SignInForm = ({ classes, onSubmit, valid, handleSubmit, ...rest }) => (
+const SignInForm = ({ classes, onSubmit, valid, handleSubmit, error }) => (
   <form onSubmit={handleSubmit(onSubmit)}>
-    <Typography variant='title' gutterBottom>
+    {/* <Typography variant='h6' color='secondary' gutterBottom>
+      WoUSO is down for maintenance!
+    </Typography> */}
+    <Typography variant='h6' gutterBottom>
       Autentifică-te
     </Typography>
-    <Typography variant='subheading' gutterBottom>
-      cu contul tău de World of USO
+    <Typography gutterBottom>
+      folosind contul tău de student (acs.curs.pub.ro)
     </Typography>
     <Field
       component={TextField}
@@ -29,6 +32,7 @@ const SignInForm = ({ classes, onSubmit, valid, handleSubmit, ...rest }) => (
       fullWidth
       margin='normal'
       validate={required}
+      autoComplete='username'
     />
     <Field
       component={TextField}
@@ -38,8 +42,13 @@ const SignInForm = ({ classes, onSubmit, valid, handleSubmit, ...rest }) => (
       margin='normal'
       type='password'
       validate={required}
+      autoComplete='password'
     />
-
+    {error && (
+      <Typography style={{ color: '#F00' }} color='secondary'>
+        {error}
+      </Typography>
+    )}
     <div className={classes.actions}>
       <Button
         type='submit'

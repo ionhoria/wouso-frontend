@@ -11,9 +11,10 @@ class SessionChecker extends React.Component {
   componentDidMount () {
     const { checked, checkSession } = this.props
 
-    if (!checked) {
-      checkSession()
-    }
+    // if (!checked) {
+    //   checkSession()
+    // }
+    checkSession()
   }
 
   render () {
@@ -29,4 +30,9 @@ const selector = createSelector(
   checked => ({ checked })
 )
 
-export default withRouter(connect(selector, { checkSession })(SessionChecker))
+export default withRouter(
+  connect(
+    selector,
+    { checkSession }
+  )(SessionChecker)
+)

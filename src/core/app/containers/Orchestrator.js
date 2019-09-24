@@ -13,6 +13,7 @@ import manifests from 'apps/manifests'
 import NavList from '../components/NavList'
 import PrivateRoute from 'shared/containers/PrivateRoute'
 import { appDataKey } from '../shared/utils/apps'
+import { signOut } from '../../pages/signin/actions'
 
 class Orchestrator extends React.Component {
   state = {
@@ -122,13 +123,15 @@ class Orchestrator extends React.Component {
   }
 
   getTitle () {
-    const { location: { pathname } } = this.props
+    const {
+      location: { pathname }
+    } = this.props
     const { usable } = this.state
     const activeApp = usable.find(manifest =>
       pathname.startsWith(path.join('/', manifest.baseUrl))
     )
 
-    return `World of USO${(activeApp && ` - ${activeApp.title}`) || ''}`
+    return activeApp ? activeApp.title : ''
   }
 
   render () {
@@ -138,15 +141,24 @@ class Orchestrator extends React.Component {
       navigation: this.state.usable.map(this.renderNavigation),
       routes: this.state.usable.map(this.renderRoutes),
       title: this.getTitle(),
-      user: this.props.user
+      user: this.props.user,
+      signOut: this.props.signOut
     })
   }
 }
 
 const selector = createSelector(
   selectUser,
-  createSelector(selectOrchestration, selectApps),
+  createSelector(
+    selectOrchestration,
+    selectApps
+  ),
   (user, apps) => ({ user, authenticated: user.authenticated, apps })
 )
 
-export default withRouter(connect(selector, { getApps })(Orchestrator))
+export default withRouter(
+  connect(
+    selector,
+    { getApps, signOut }
+  )(Orchestrator)
+)

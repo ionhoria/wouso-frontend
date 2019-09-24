@@ -1,3 +1,3 @@
-export const FETCH_CHALLENGES = 'FETCH_CHALLENGES'
-export const FETCH_USERS = 'FETCH_USERS'
-export const FETCH_QUESTION = 'FETCH_QUESTION'
+export const SET_USERS = 'challenge/SET_USERS'
+export const CLEAR_USERS = 'challenge/CLEAR_USERS'
+export const SET_CHALLENGE = 'challenge/SET_CHALLENGE'

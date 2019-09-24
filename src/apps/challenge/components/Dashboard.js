@@ -1,195 +1,91 @@
 import React from 'react'
-
-import withStyles from '@material-ui/core/styles/withStyles'
 import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
-import { ListItemText } from '@material-ui/core'
+import ListItemText from '@material-ui/core/ListItemText'
+
+import withStyles from '@material-ui/core/styles/withStyles'
+import { Button } from '@material-ui/core'
 
 const styles = theme => ({
-  paper: { ...theme.paper, width: '800px' },
+  paper: theme.paper,
   actions: theme.actions,
-  title: {
-    paddingTop: 2 * theme.spacing.unit
+  users: {
+    height: '200px',
+    overflow: 'auto'
   }
 })
 
-const renderOutgoing = challenge => {
-  if (!challenge) {
-    return <p><b>OUTGOING</b>: No pending challenge. Go challenge someone!</p>
-  }
-  return (
-    <p>
-      <b>OUTGOING</b>:
-      {' '}
-      <b>{challenge.receiver}</b>
-      {' '}
-      is pending a challenge invitation from you.
-      He has until
-      {' '}
-      <b>{new Date(challenge.expires).toLocaleTimeString()}</b>
-      {' '}
-      to accept or decline.
-    </p>
-  )
-}
+const QUERY_FORMAT = /^[a-z0-9]*$/i
 
-const renderIncoming = (
-  classes,
-  challenge,
-  acceptChallenge,
-  declineChallenge,
-  playChallenge
-) => {
-  if (!challenge) {
-    return (
-      <div>
-        <b>INCOMING</b>: No pending challenge. Ask someone to challenge you!
-      </div>
-    )
-  }
-  if (challenge.status === 'accepted') {
-    return (
-      <div>
-        <b>INCOMING</b>: You have accepted a challenge invitation from
-        {' '}
-        <b>{challenge.sender}</b>
-        . Challenge expires at
-        {' '}
-        <b>{new Date(challenge.expires).toLocaleTimeString()}</b>
-        .
-        <div className={classes.actions}>
-          <Button
-            variant='contained'
-            onClick={playChallenge}
-            style={{ marginRight: '8px' }}
-          >
-            PLAY CHALLENGE
-          </Button>
-        </div>
-      </div>
-    )
-  }
-  return (
-    <div>
-      <b>INCOMING</b>: You are pending a challenge invitation from
-      {' '}
-      <b>{challenge.sender}</b>
-      . Invitation expires at
-      {' '}
-      <b>{new Date(challenge.expires).toLocaleTimeString()}</b>
-      .
-      <div className={classes.actions}>
-        <Button
-          variant='contained'
-          onClick={acceptChallenge}
-          style={{ marginRight: '8px' }}
-        >
-          ACCEPT
-        </Button>
-        <Button variant='contained' onClick={declineChallenge}>
-          DECLINE
-        </Button>
-      </div>
-    </div>
-  )
-}
+class Dashboard extends React.Component {
+  state = { value: '', error: false }
 
-const renderHistory = challenge => {
-  const { sender, receiver, expires, status, victory } = challenge
-  let report = 'Expired'
-  if (status === 'accepted') {
-    report = victory === null
-      ? 'Tie'
-      : victory === true ? 'Sender won' : 'Sender lost'
-  } else if (status === 'declined') {
-    report = 'Declined'
+  handleChange = event => {
+    const { value } = event.target
+    if (QUERY_FORMAT.test(value)) {
+      this.setState({ value, error: false })
+    }
   }
-  if (receiver) {
-    return (
-      <p key={challenge.id}>
-        You challenged {receiver}.<br />
-        Status: {report}<br />
-        {new Date(expires).toLocaleString()}
-      </p>
-    )
-  } else {
-    return (
-      <p key={challenge.id}>
-        You were challenged by {sender}.<br />
-        Status: {report}<br />
-        {new Date(expires).toLocaleString()}
-      </p>
-    )
-  }
-}
 
-const renderUser = (user, sendChallenge) => {
-  const { id, firstName, lastName, userName } = user
-  return (
-    <ListItem key={id}>
-      <ListItemText primary={`${firstName} ${lastName} (${userName})`} />
-      <Button onClick={() => sendChallenge(user)}>Challenge</Button>
+  handleSubmit = event => {
+    event.preventDefault()
+    const { value } = this.state
+    if (value.length < 3) {
+      this.setState({ error: true })
+    } else {
+      this.props.queryUsers(value)
+    }
+  }
+
+  renderUser = ({ username, firstName, lastName }) => (
+    <ListItem key={username} style={{ paddingLeft: '0px' }}>
+      <ListItemText primary={`${lastName} ${firstName}`} secondary={username} />
+      <Button
+        variant='contained'
+        color='primary'
+        onClick={() => console.log('challengeing ', username)}
+      >
+        Provoacă
+      </Button>
     </ListItem>
   )
-}
 
-const Dashboard = ({
-  classes,
-  challenges,
-  users,
-  sendChallenge,
-  fetchState,
-  acceptChallenge,
-  declineChallenge,
-  playChallenge
-}) => {
-  return (
-    <Paper className={classes.paper}>
-      <div>
-        <Typography variant='title'>
-          Challenge Dashboard
-        </Typography>
-        <div className={classes.actions}>
-          <Button variant='contained' color='primary' onClick={fetchState}>
-            Refresh
-          </Button>
+  render() {
+    return (
+      <Paper className={this.props.classes.paper}>
+        <Typography variant='h6'>Challenge Dashboard</Typography>
+        <div>
+          <Typography>Incoming challenge:</Typography>
+          <Typography>Outgoing challenge:</Typography>
         </div>
-      </div>
-      {renderOutgoing(challenges.outgoing)}
-      {renderIncoming(
-        classes,
-        challenges.incoming,
-        acceptChallenge,
-        declineChallenge,
-        playChallenge
-      )}
-
-      {/* If no outgoing challenge is pending,
-      display a possible list of users to challenge from */}
-      {challenges.outgoing
-        ? null
-        : <div>
-          <Typography variant='title' className={classes.title}>
-              Users you can challenge:
-            </Typography>
-          <List>
-            {users.map(user => renderUser(user, sendChallenge))}
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              id='query'
+              label='Caută jucători'
+              value={this.state.value}
+              onChange={this.handleChange}
+              margin='normal'
+              fullWidth
+              error={this.state.error}
+              helperText={
+                this.state.error
+                  ? 'Căutarea trebuie să conțină minim 3 caractere!'
+                  : 'Apasă ENTER pentru a caută.'
+              }
+              autoComplete='off'
+            />
+          </form>
+          <List dense className={this.props.classes.users}>
+            {this.props.users && this.props.users.map(this.renderUser)}
           </List>
-        </div>}
-
-      <div>
-        <Typography variant='title' className={classes.title}>
-          Challenge history
-        </Typography>
-        {challenges.history.length !== 0
-          ? challenges.history.map(renderHistory)
-          : 'Your challenge history is empty.'}
-      </div>
-    </Paper>
-  )
+        </div>
+      </Paper>
+    )
+  }
 }
 
 export default withStyles(styles)(Dashboard)

@@ -5,7 +5,7 @@ import rootReducer from './reducers'
 export default {
   title: 'Question of the Day',
   baseUrl: 'qotd',
-  requiredBackendApps: ['wouso-qotd'],
+  requiredBackendApps: ['qotd'],
   routes: Routes,
   navigation: Navigation,
   reducer: rootReducer

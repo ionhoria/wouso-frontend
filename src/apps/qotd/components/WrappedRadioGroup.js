@@ -10,13 +10,12 @@ const styles = theme => ({
   }
 })
 
-const WrappedRadioGroup = ({ classes, input, ...rest }) => {
+const WrappedRadioGroup = ({ classes, input, answer, ...rest }) => {
   return (
     <RadioGroup
-      {...input}
       {...rest}
       className={classes.group}
-      value={input.value}
+      value={answer || input.value}
       onChange={(e, value) => input.onChange(value)}
     />
   )

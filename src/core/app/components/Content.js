@@ -10,15 +10,14 @@ const styles = theme => {
       justifyContent: 'center',
       alignItems: 'center',
       padding: theme.spacing.unit,
-      minHeight: `calc(100vh - 64px - ${theme.custom.footer.height}px - 2 * ${theme.spacing.unit}px)`
+      minHeight: `calc(100vh - 64px - ${theme.custom.footer.height}px
+        - 2 * ${theme.spacing.unit}px)`
     }
   }
 }
 
 const Content = ({ classes, children }) => (
-  <div className={classes.content}>
-    {children}
-  </div>
+  <div className={classes.content}>{children}</div>
 )
 
 export default withStyles(styles)(Content)

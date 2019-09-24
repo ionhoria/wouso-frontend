@@ -12,7 +12,7 @@ const styles = theme => ({
 const IconPage = ({ classes, text, icon: Icon }) => (
   <React.Fragment>
     <Icon className={classes.icon} />
-    <Typography variant='title' gutterBottom>
+    <Typography variant='h6' gutterBottom>
       {text}
     </Typography>
   </React.Fragment>

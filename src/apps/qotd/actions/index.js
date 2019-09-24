@@ -1,14 +1,14 @@
 import { apiRequest } from 'core/app/actions/api'
 import { SET_QOTD, CLEAR_QOTD } from './types'
 
-const ROOT_URL = 'apps/wouso-qotd'
+const ROOT_URL = 'apps/qotd'
 
-export const getQotd = secret => dispatch =>
+export const getQotd = () => dispatch =>
   new Promise((resolve, reject) =>
     dispatch(
       apiRequest({
         method: 'GET',
-        path: `${ROOT_URL}/sessions`,
+        path: ROOT_URL,
         success: payload => dispatch => {
           dispatch(setQotd(payload))
           resolve(payload)
@@ -34,14 +34,15 @@ const clearQotd = () => {
   }
 }
 
-export const postQotd = qotd => dispatch => {
-  return new Promise((resolve, reject) =>
+export const postQotd = qotd => dispatch =>
+  new Promise((resolve, reject) =>
     dispatch(
       apiRequest({
         method: 'POST',
-        path: `${ROOT_URL}/answers`,
+        path: ROOT_URL,
         data: qotd,
         success: payload => () => {
+          dispatch(clearQotd())
           resolve(payload)
         },
         failure: err => () => {
@@ -50,4 +51,3 @@ export const postQotd = qotd => dispatch => {
       })
     )
   )
-}

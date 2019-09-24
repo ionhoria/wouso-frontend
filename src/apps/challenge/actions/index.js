@@ -1,44 +1,18 @@
 import { apiRequest } from 'core/app/actions/api'
-import { FETCH_CHALLENGES, FETCH_USERS, FETCH_QUESTION } from './types'
+import { SET_USERS, CLEAR_USERS, SET_CHALLENGE } from './types'
 
-const ROOT_URL = 'apps/wouso-challenge'
+const ROOT_URL = 'apps/challenge'
 
-export const fetchChallenges = () => dispatch =>
-  dispatch(
-    apiRequest({
-      method: 'GET',
-      path: ROOT_URL,
-      success: payload => dispatch => {
-        dispatch({ type: FETCH_CHALLENGES, payload })
-      },
-      failure: err => () => {
-        console.error(err)
-      }
-    })
-  )
+export const queryUsers = query => dispatch => {
+  dispatch({ type: CLEAR_USERS })
 
-export const fetchUsers = () => dispatch =>
-  dispatch(
-    apiRequest({
-      method: 'GET',
-      path: `${ROOT_URL}/users`,
-      success: payload => dispatch => {
-        dispatch({ type: FETCH_USERS, payload })
-      },
-      failure: err => () => {
-        console.error(err)
-      }
-    })
-  )
-
-export const postChallenge = data => dispatch =>
-  new Promise((resolve, reject) =>
+  return new Promise((resolve, reject) =>
     dispatch(
       apiRequest({
-        method: 'POST',
-        path: `${ROOT_URL}/challenge`,
-        data,
-        success: payload => () => {
+        method: 'GET',
+        path: `${ROOT_URL}/users?name=${query}`,
+        success: payload => dispatch => {
+          dispatch(setUsers(payload))
           resolve(payload)
         },
         failure: err => () => {
@@ -47,42 +21,34 @@ export const postChallenge = data => dispatch =>
       })
     )
   )
+}
+const setUsers = users => {
+  return {
+    type: SET_USERS,
+    payload: users
+  }
+}
 
-export const acceptChallenge = () => dispatch =>
-  new Promise((resolve, reject) =>
-    dispatch(
-      apiRequest({
-        method: 'POST',
-        path: `${ROOT_URL}/accept`,
-        success: payload => () => {
-          resolve(payload)
-        },
-        failure: err => () => reject(err)
-      })
-    )
-  )
-
-export const declineChallenge = () => dispatch =>
-  new Promise((resolve, reject) =>
-    dispatch(
-      apiRequest({
-        method: 'POST',
-        path: `${ROOT_URL}/decline`,
-        success: payload => () => resolve(payload),
-        failure: err => () => reject(err)
-      })
-    )
-  )
-
-export const fetchQuestion = () => dispatch =>
-  new Promise((resolve, reject) => {
+export const fetchChallenge = () => dispatch => {
+  return new Promise((resolve, reject) =>
     dispatch(
       apiRequest({
         method: 'GET',
-        path: `${ROOT_URL}/question`,
-        success: payload => dispatch =>
-          dispatch({ type: FETCH_QUESTION, payload }),
-        failure: err => () => reject(err)
+        path: ROOT_URL,
+        success: payload => dispatch => {
+          dispatch(setChallenge(payload))
+          resolve(payload)
+        },
+        failure: err => () => {
+          reject(err)
+        }
       })
     )
-  })
+  )
+}
+const setChallenge = challenge => {
+  return {
+    type: SET_CHALLENGE,
+    payload: challenge
+  }
+}

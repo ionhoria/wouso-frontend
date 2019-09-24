@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux'
-import challengesReducer from './challengesReducer'
+
+import challengeReducer from './challengeReducer'
 import usersReducer from './usersReducer'
-import questionReducer from './questionReducer'
 
 const rootReducer = combineReducers({
-  challenges: challengesReducer,
-  users: usersReducer,
-  question: questionReducer
+  challenge: challengeReducer,
+  users: usersReducer
 })
 
 export default rootReducer

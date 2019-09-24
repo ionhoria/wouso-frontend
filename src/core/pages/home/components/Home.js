@@ -1,16 +1,21 @@
-import React from 'react'
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core';
 
-import Typography from '@material-ui/core/Typography'
+const styles = theme => ({
+  paper: theme.paper
+});
 
-const Home = ({ user }) => (
-  <div>
-    <Typography variant='title' gutterBottom>
+const Home = ({ classes, user }) => (
+  <Paper className={classes.paper}>
+    <Typography variant='h6' gutterBottom>
       Bine ai venit, {user.firstName}!
     </Typography>
-    <Typography variant='subheading' gutterBottom>
+    <Typography gutterBottom>
       Pentru a alege un joc poţi folosi meniul din partea stângă. Distracţie placută!
     </Typography>
-  </div>
-)
+  </Paper>
+);
 
-export default Home
+export default withStyles(styles)(Home);

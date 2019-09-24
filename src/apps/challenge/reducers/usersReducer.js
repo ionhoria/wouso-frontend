@@ -1,12 +1,12 @@
-import { FETCH_USERS } from '../actions/types'
+import { SET_USERS } from '../actions/types'
 
-const reducer = (state = [], action) => {
+const usersReducer = (state = [], action) => {
   switch (action.type) {
-    case FETCH_USERS:
+    case SET_USERS:
       return action.payload
     default:
       return state
   }
 }
 
-export default reducer
+export default usersReducer

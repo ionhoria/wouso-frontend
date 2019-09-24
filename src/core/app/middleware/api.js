@@ -4,6 +4,7 @@ import path from 'path'
 import { API_REQUEST } from '../actions/types'
 import { apiSuccess, apiFailure } from '../actions/api'
 
+// const ROOT_URL = 'https://wouso.cs.pub.ro:5000'
 const ROOT_URL = 'http://localhost:5000'
 
 const mockHandlers = {

@@ -11,11 +11,11 @@ import WrappedRadioGroup from './WrappedRadioGroup'
 
 import withStyles from '@material-ui/core/styles/withStyles'
 
+import MarkdownIt from 'markdown-it'
+const md = new MarkdownIt()
+
 const styles = theme => ({
-  paper: {
-    width: 400,
-    padding: '48px 40px 36px'
-  },
+  paper: theme.paper,
   actions: {
     paddingTop: 3 * theme.spacing.unit,
     display: 'flex',
@@ -23,61 +23,70 @@ const styles = theme => ({
   },
   button: {
     marginLeft: '10px'
+  },
+  warn: {
+    textAlign: 'right'
   }
 })
 
 const required = value => (!value ? 'Trebuie să alegi un răspuns' : undefined)
 
 const Answer = ({ classes, qotd, handleSubmit, onSubmit }) => {
-  const { answers, text: questionText } = qotd
+  const { answers, text: questionText } = qotd.question
   return (
     <Paper className={classes.paper}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Typography variant='title'>
-          {questionText}
-        </Typography>
-        <FormControl component='fieldset' className={classes.formControl}>
+        <Typography
+          variant='h6'
+          dangerouslySetInnerHTML={{ __html: md.renderInline(questionText) }}
+        />
+        <FormControl component='fieldset' fullWidth>
           <Field
             name='answer'
             component={WrappedRadioGroup}
+            answer={qotd.answer ? qotd.answer.answer : null}
             validate={required}
           >
-            <FormControlLabel
-              value={answers[0]}
-              control={<Radio />}
-              label={answers[0]}
-            />
-            <FormControlLabel
-              value={answers[1]}
-              control={<Radio />}
-              label={answers[1]}
-            />
-            <FormControlLabel
-              value={answers[2]}
-              control={<Radio />}
-              label={answers[2]}
-            />
-            <FormControlLabel
-              value={answers[3]}
-              control={<Radio />}
-              label={answers[3]}
-            />
+            {answers.map((answer, index) => (
+              <FormControlLabel
+                key={index}
+                value={answer}
+                control={<Radio />}
+                label={
+                  <Typography
+                    dangerouslySetInnerHTML={{
+                      __html: md.renderInline(answer)
+                    }}
+                  />
+                }
+              />
+            ))}
+            )
           </Field>
         </FormControl>
 
+        {qotd.answer && (
+          <Typography className={classes.warn}>
+            Ai răspuns <b>{qotd.answer.valid ? 'corect' : 'incorect'}</b> la
+            întrebarea zilei.
+            <br />
+            Revino mâine pentru o nouă întrebare!
+          </Typography>
+        )}
         <div className={classes.actions}>
           <Button
             variant='contained'
             color='secondary'
             component={Link}
-            to={'/qotd'}
+            to={'/'}
           >
-            Anulare
+            Înapoi
           </Button>
           <Button
             type='submit'
             variant='contained'
             color='primary'
+            disabled={!!qotd.answer}
             className={classes.button}
           >
             Răspunde
