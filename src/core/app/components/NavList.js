@@ -51,7 +51,7 @@ class NavList extends React.Component {
             inset
             primary={title}
             primaryTypographyProps={{
-              color: this.state.expanded ? 'primary' : 'default'
+              color: this.state.expanded ? 'primary' : 'initial'
             }}
           />
           {expand}
