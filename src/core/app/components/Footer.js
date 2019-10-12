@@ -11,8 +11,8 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     width: `calc(100% - ${theme.custom.drawer.width}px)`,
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1)
   }
 })
 

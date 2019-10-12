@@ -21,7 +21,7 @@ const styles = theme => ({
     padding: '48px 40px 36px'
   },
   actions: {
-    paddingTop: 3 * theme.spacing.unit,
+    paddingTop: theme.spacing(3),
     display: 'flex',
     justifyContent: 'flex-end'
   },

@@ -9,8 +9,8 @@ const styles = theme => {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: theme.spacing.unit,
-      minHeight: `calc(100vh - 64px - ${theme.custom.footer.height}px - 2 * ${theme.spacing.unit}px)`
+      padding: theme.spacing(1),
+      minHeight: `calc(100vh - 64px - ${theme.custom.footer.height}px - 2 * ${theme.spacing(1)}px)`
     }
   }
 }

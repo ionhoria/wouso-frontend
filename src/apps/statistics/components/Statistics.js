@@ -12,11 +12,11 @@ import TableCell from '@material-ui/core/TableCell'
 const styles = theme => ({
   container: {
     flexGrow: 1,
-    paddingTop: theme.spacing.unit * 3,
+    paddingTop: theme.spacing(3),
     width: '70%'
   },
   root: {
-    marginTop: theme.spacing.unit * 3
+    marginTop: theme.spacing(3)
   }
 })
 

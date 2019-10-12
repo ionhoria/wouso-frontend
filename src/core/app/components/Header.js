@@ -19,7 +19,7 @@ const styles = theme => ({
     justifyContent: 'center'
   },
   headerElem: {
-    paddingLeft: 2 * theme.spacing.unit
+    paddingLeft: theme.spacing(2)
   }
 })
 

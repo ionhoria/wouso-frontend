@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography'
 const styles = theme => ({
   icon: {
     fontSize: theme.custom.icon.error.size,
-    marginBottom: theme.spacing.unit
+    marginBottom: theme.spacing(1)
   }
 })
 

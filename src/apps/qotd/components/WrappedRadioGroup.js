@@ -6,7 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 
 const styles = theme => ({
   group: {
-    margin: `${theme.spacing.unit}px 0`
+    margin: `${theme.spacing(1)}px 0`
   }
 })
 

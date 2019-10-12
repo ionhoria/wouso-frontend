@@ -8,7 +8,7 @@ import { required } from 'utils/validators'
 
 const styles = theme => ({
   actions: {
-    paddingTop: 3 * theme.spacing.unit,
+    paddingTop:theme.spacing(3),
     display: 'flex',
     justifyContent: 'flex-end'
   }

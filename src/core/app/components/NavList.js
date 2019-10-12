@@ -31,7 +31,7 @@ class NavList extends React.Component {
 
   render () {
     const { title, sub, theme, onNavigate } = this.props
-    const paddingUnit = 2 * theme.spacing.unit
+    const paddingUnit = theme.spacing(2)
     const { padding = paddingUnit } = this.props
     const { expanded } = this.state
 

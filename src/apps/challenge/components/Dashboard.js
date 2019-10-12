@@ -12,7 +12,7 @@ const styles = theme => ({
   paper: { ...theme.paper, width: '800px' },
   actions: theme.actions,
   title: {
-    paddingTop: 2 * theme.spacing.unit
+    paddingTop: 2 * theme.spacing(2)
   }
 })
 
